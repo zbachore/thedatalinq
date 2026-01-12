@@ -3,43 +3,47 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Data Linq | Zewdu Bachore | Sr. Cloud Data Architect</title>
+  <title>The Data Linq | Enterprise Cloud & Data Architecture</title>
   <style>
     :root {
-      --frame-bg: #111418;      /* The visible outer boundary color */
-      --inner-canvas: #0d1117;   /* The main content area */
-      --surface: #161b22;
+      --frame-bg: #05070a;      /* Darkest outer frame */
+      --inner-canvas: #0d1117;   /* Main site background */
+      --surface: #161b22;       /* Component background */
       --accent: #58a6ff;
       --text-main: #f0f6fc;
       --text-muted: #8b949e;
       --border: #30363d;
+      --max-width: 1100px;
     }
+
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      padding: 50px 0; /* Ensures the 'box' has space on top and bottom */
-      font-family: 'Inter', -apple-system, sans-serif;
+      padding: 60px 0; 
+      font-family: 'Inter', -apple-system, system-ui, sans-serif;
       background-color: var(--frame-bg);
       color: var(--text-main);
       display: flex;
       justify-content: center;
     }
 
-    /* THE VISIBLE BOXED FRAME */
+    /* THE BOXED LAYOUT */
     .page-wrapper {
-      width: 90%;
-      max-width: 1100px;
+      width: 92%;
+      max-width: var(--max-width);
       background-color: var(--inner-canvas);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      box-shadow: 0 30px 60px rgba(0,0,0,0.7);
+      border-radius: 8px;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.8);
       overflow: hidden;
     }
 
     .container { padding: 0 60px; }
 
+    /* Navigation */
     nav {
-      background: rgba(13, 17, 23, 0.95);
+      background: rgba(13, 17, 23, 0.98);
       border-bottom: 1px solid var(--border);
       padding: 1.5rem 60px;
       display: flex;
@@ -47,11 +51,14 @@
       align-items: center;
     }
 
-    .hero { padding: 80px 0 60px; }
-    h1 { font-size: 3.5rem; margin: 0; letter-spacing: -2px; line-height: 1.1; }
-    .hero-sub { font-size: 1.3rem; color: var(--text-muted); margin: 20px 0; max-width: 800px; }
+    .logo { font-weight: 900; font-size: 1.5rem; letter-spacing: -1px; text-decoration: none; color: #fff; }
 
-    /* The Three Beautiful Tabs (Services Grid) */
+    /* Hero Section */
+    .hero { padding: 100px 0 80px; text-align: left; }
+    h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin: 0; letter-spacing: -2px; line-height: 1.1; font-weight: 800; }
+    .hero-sub { font-size: 1.4rem; color: var(--text-muted); margin: 25px 0; max-width: 850px; line-height: 1.5; }
+
+    /* The Three Strategic Pillars */
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -60,58 +67,60 @@
     }
     .service-card {
       background: var(--surface);
-      padding: 30px;
+      padding: 40px;
       border: 1px solid var(--border);
-      border-radius: 12px;
-      transition: 0.3s;
+      border-radius: 4px;
+      transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    .service-card:hover { border-color: var(--accent); transform: translateY(-5px); }
-    .service-card h3 { color: var(--accent); margin-top: 0; font-size: 1.25rem; }
-    .service-card ul { padding-left: 1.2rem; color: var(--text-muted); font-size: 0.95rem; }
-    .service-card li { margin-bottom: 8px; }
+    .service-card:hover { border-color: var(--accent); transform: translateY(-8px); }
+    .service-card h3 { color: var(--accent); margin-top: 0; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 1px; }
+    .service-card ul { padding: 0; list-style: none; color: var(--text-muted); font-size: 0.95rem; margin-top: 20px; }
+    .service-card li { margin-bottom: 12px; padding-left: 20px; position: relative; }
+    .service-card li::before { content: "→"; position: absolute; left: 0; color: var(--accent); }
 
-    /* Impact Section */
-    .impact-stream { margin-top: 40px; }
-    .impact-item {
-      display: flex;
-      gap: 20px;
-      padding: 24px;
-      border-bottom: 1px solid var(--border);
-    }
-    .impact-icon { color: var(--accent); font-weight: bold; font-size: 1.5rem; }
+    /* Impact/Performance Section */
+    .section-title { font-size: 2rem; font-weight: 800; margin-bottom: 40px; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
+    
+    .case-study-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 80px; }
+    .case-item h4 { color: var(--text-main); font-size: 1.2rem; margin: 0 0 10px 0; }
+    .case-item p { color: var(--text-muted); font-size: 1rem; margin: 0; line-height: 1.6; }
 
-    .cta-box {
+    /* CTA / Contact */
+    .cta-section {
       background: var(--surface);
-      padding: 60px;
-      border-radius: 16px;
-      border: 1px solid var(--border);
+      padding: 80px 60px;
+      border-top: 1px solid var(--border);
       text-align: center;
-      margin: 80px 0;
     }
     .btn {
       background: var(--accent);
       color: white;
-      padding: 14px 32px;
+      padding: 18px 45px;
       text-decoration: none;
-      border-radius: 6px;
-      font-weight: bold;
+      border-radius: 4px;
+      font-weight: 700;
       display: inline-block;
-      margin-bottom: 20px;
+      transition: 0.3s;
+      font-size: 1rem;
     }
+    .btn:hover { filter: brightness(1.1); box-shadow: 0 0 20px rgba(88, 166, 255, 0.4); }
 
     footer {
-      padding: 40px;
-      text-align: center;
-      border-top: 1px solid var(--border);
+      padding: 40px 60px;
+      background: #090c10;
       color: var(--text-muted);
       font-size: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 900px) {
+      .case-study-grid { grid-template-columns: 1fr; }
+      .container { padding: 0 30px; }
+      nav { padding: 1.5rem 30px; }
       body { padding: 0; }
-      .page-wrapper { width: 100%; border-radius: 0; border: none; }
-      .container { padding: 0 24px; }
-      nav { padding: 1.5rem 24px; }
+      .page-wrapper { width: 100%; border-radius: 0; }
     }
   </style>
 </head>
@@ -119,105 +128,97 @@
 
 <div class="page-wrapper">
   <nav>
-    <div style="font-weight: 900; font-size: 1.4rem;">The Data Linq</div>
-    <div style="display: flex; gap: 20px; font-size: 0.9rem;">
-      <a href="#services" style="color: var(--text-muted); text-decoration: none;">Expertise</a>
-      <a href="#impact" style="color: var(--text-muted); text-decoration: none;">Impact</a>
-      <a href="#contact" style="color: var(--accent); text-decoration: none; font-weight: bold;">Contact</a>
+    <a href="#" class="logo">THE DATA LINQ</a>
+    <div style="display: flex; gap: 30px; font-size: 0.85rem; font-weight: 600; letter-spacing: 1px;">
+      <a href="#services" style="color: var(--text-muted); text-decoration: none; text-transform: uppercase;">Solutions</a>
+      <a href="#impact" style="color: var(--text-muted); text-decoration: none; text-transform: uppercase;">Performance</a>
+      <a href="#contact" style="color: var(--accent); text-decoration: none; text-transform: uppercase;">Consultation</a>
     </div>
   </nav>
 
   <div class="container">
     <header class="hero">
-      <div style="color: var(--accent); font-weight: bold; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px;">
-        Sr. Cloud Data Architect
-      </div>
-      <h1>Enterprise Data Systems. Built for Scale.</h1>
+      <h1>Architecting Enterprise Data Resilience.</h1>
       <p class="hero-sub">
-        Specializing in secure, configuration-driven architectures[cite: 43]. 
-        From **Azure Landing Zones** to **Medallion Lakehouses**, I design resilient platforms for the modern era[cite: 46, 47].
+        The Data Linq provides high-performance cloud data architectures for global organizations. 
+        We specialize in <strong>configuration-driven platforms</strong> that bridge the gap 
+        between complex engineering and sustainable business value.
       </p>
     </header>
 
+    
+
     <section id="services">
-      <h2 style="font-size: 1.8rem; margin-bottom: 30px;">Architectural Pillars</h2>
+      <h2 class="section-title">Core Capabilities</h2>
       <div class="services-grid">
         <div class="service-card">
-          <h3>Cloud foundations</h3>
+          <h3>Cloud Foundations</h3>
           <ul>
-            <li>**Azure Landing Zones:** Implementing scalable, secure environments[cite: 43, 88].</li>
-            <li>**Well-Architected Framework:** Ensuring reliability and cost efficiency[cite: 45, 86].</li>
-            <li>**IaC Automation:** CI/CD deployments via Terraform and ARM templates[cite: 89, 108].</li>
+            <li>Enterprise Azure Landing Zone Implementation</li>
+            <li>Well-Architected Framework (WAF) Compliance</li>
+            <li>Immutable Infrastructure via Terraform & IaC</li>
           </ul>
         </div>
         <div class="service-card">
           <h3>Lakehouse Engineering</h3>
           <ul>
-            <li>**Medallion Architecture:** Designing Bronze, Silver, and Gold data layers[cite: 46, 81].</li>
-            <li>**Unity Catalog:** Centralized governance and data lineage[cite: 83, 84].</li>
-            <li>**Real-time Ingestion:** Streaming via Kafka and Spark Structured Streaming[cite: 92, 93].</li>
+            <li>Medallion Architecture Design (Bronze, Silver, Gold)</li>
+            <li>Unity Catalog Governance & Data Lineage</li>
+            <li>High-Velocity Spark Structured Streaming</li>
           </ul>
         </div>
         <div class="service-card">
           <h3>Governance & Security</h3>
           <ul>
-            <li>**Identity Management:** Azure Key Vault and VNet Injection patterns[cite: 65, 87].</li>
-            <li>**Modern Analytics:** Expertise in Microsoft Fabric and Synapse Analytics[cite: 73, 85].</li>
-            <li>**Optimization:** Performance tuning and workload compute sizing[cite: 86, 117].</li>
+            <li>VNet Injection & Private Link Security Patterns</li>
+            <li>Fine-Grained Access Control (FGAC) Frameworks</li>
+            <li>Unified Analytics via Microsoft Fabric & Synapse</li>
           </ul>
         </div>
       </div>
     </section>
 
     <section id="impact">
-      <h2 style="font-size: 1.8rem; margin-top: 80px;">Proven Strategic Impact</h2>
-      <div class="impact-stream">
-        <div class="impact-item">
-          <div class="impact-icon">→</div>
-          <div>
-            <strong>Revenue Leadership:</strong> Technical advisor for pre-sales contributing to multi-million-dollar wins at Cognizant[cite: 55].
-          </div>
+      <h2 class="section-title">Institutional Impact</h2>
+      <div class="case-study-grid">
+        <div class="case-item">
+          <h4>Revenue-Driven Strategy</h4>
+          <p>We lead architectural discovery and Proof of Concept (PoC) initiatives that secure multi-million dollar investments for enterprise clients.</p>
         </div>
-        <div class="impact-item">
-          <div class="impact-icon">→</div>
-          <div>
-            <strong>Operational Excellence:</strong> Optimized Databricks workloads for high-performance query and cost efficiency[cite: 86].
-          </div>
+        <div class="case-item">
+          <h4>Platform Optimization</h4>
+          <p>Engineering workload efficiencies that reduce cloud operational expenditure while significantly improving query performance and data throughput.</p>
         </div>
-        <div class="impact-item">
-          <div class="impact-icon">→</div>
-          <div>
-            <strong>Enterprise Governance:</strong> Engineered Unity Catalog models for centralized auditing and access control[cite: 83, 84].
-          </div>
+        <div class="case-item">
+          <h4>Global Governance</h4>
+          <p>Deploying centralized governance models using Unity Catalog to ensure data audibility and compliance across distributed global engineering teams.</p>
         </div>
-        <div class="impact-item">
-          <div class="impact-icon">→</div>
-          <div>
-            <strong>High Availability:</strong> Implemented SQL Server Always On Availability Groups for disaster recovery[cite: 115].
-          </div>
+        <div class="case-item">
+          <h4>High Availability</h4>
+          <p>Implementing mission-critical disaster recovery strategies, including SQL Server Always On Availability Groups, for 24/7 business continuity.</p>
         </div>
-      </div>
-    </section>
-
-    <section id="contact" class="cta-box">
-      <h2 style="margin-top:0;">Let's Architect Your Strategy</h2>
-      <p style="color: var(--text-muted); margin-bottom: 30px;">
-        Available for enterprise data modernization and cloud platform initiatives.
-      </p>
-      <a href="mailto:zbelachew@gmail.com" class="btn">Email Zewdu Bachore</a>
-      <div style="margin-top: 10px;">
-        <a href="https://www.linkedin.com/in/zbelachew/" target="_blank" style="color: var(--accent); text-decoration: none; font-size: 0.95rem;">
-          Connect on LinkedIn →
-        </a>
       </div>
     </section>
   </div>
 
+  <section id="contact" class="cta-section">
+    <div class="container">
+      <h2 style="font-size: 2.5rem; margin-top: 0;">Modernize Your Architecture</h2>
+      <p style="color: var(--text-muted); max-width: 700px; margin: 0 auto 40px; font-size: 1.1rem;">
+        Contact The Data Linq to discuss enterprise data strategy, cloud migration, or platform optimization.
+      </p>
+      <a href="mailto:contact@thedatalinq.com" class="btn">Request a Strategic Consultation</a>
+      <div style="margin-top: 40px;">
+        <a href="https://www.linkedin.com/in/zbelachew/" target="_blank" style="color: var(--accent); text-decoration: none; font-size: 0.9rem; font-weight: 600;">
+          LinkedIn Corporate Profile →
+        </a>
+      </div>
+    </div>
+  </section>
+
   <footer>
-    <p>&copy; 2026 The Data Linq | Laurel, Maryland [cite: 41]</p>
-    <p style="margin-top: 10px; opacity: 0.7;">
-      Certifications: Azure Solutions Architect Expert, AWS Professional, GCP Professional[cite: 20, 21, 22].
-    </p>
+    <div>&copy; 2026 THE DATA LINQ. ALL RIGHTS RESERVED.</div>
+    <div style="opacity: 0.6; letter-spacing: 1px;">LAUREL, MARYLAND</div>
   </footer>
 </div>
 
