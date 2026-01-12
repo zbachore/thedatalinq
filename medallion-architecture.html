@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Medallion Architecture | The Data Linq</title>
+  <style>
+    :root {
+      --frame-bg: #05070a;
+      --inner-canvas: #0d1117;
+      --surface: #161b22;
+      --accent: #58a6ff;
+      --text-main: #f0f6fc;
+      --text-muted: #8b949e;
+      --border: #30363d;
+      --max-width: 900px;
+      --bronze: #cd7f32;
+      --silver: #c0c0c0;
+      --gold: #ffd700;
+    }
+
+    body {
+      margin: 0;
+      padding: 40px 0;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--frame-bg);
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      line-height: 1.6;
+    }
+
+    .page-wrapper {
+      width: 92%;
+      max-width: var(--max-width);
+      background-color: var(--inner-canvas);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 60px;
+    }
+
+    .back-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: inline-block;
+      margin-bottom: 30px;
+    }
+
+    h1 { font-size: 2.5rem; letter-spacing: -1px; margin-bottom: 10px; }
+    h2 { color: var(--accent); margin-top: 40px; font-size: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+    
+    .medallion-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+      margin: 40px 0;
+    }
+
+    .layer-card {
+      background: var(--surface);
+      padding: 25px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      position: relative;
+    }
+
+    .layer-card h3 { margin-top: 0; font-size: 1.1rem; text-transform: uppercase; }
+    .bronze-top { border-top: 4px solid var(--bronze); }
+    .silver-top { border-top: 4px solid var(--silver); }
+    .gold-top { border-top: 4px solid var(--gold); }
+
+    .tech-stack {
+      background: #010409;
+      padding: 15px;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 0.8rem;
+      color: var(--accent);
+      margin-top: 15px;
+    }
+
+    footer { margin-top: 60px; border-top: 1px solid var(--border); padding-top: 20px; font-size: 0.8rem; color: var(--text-muted); }
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+  <a href="index.html" class="back-link">← Back to Solutions</a>
+  
+  <header>
+    <h1>Medallion Architecture</h1>
+    <p style="color: var(--text-muted); font-size: 1.2rem;">Multi-hop data processing for the modern Enterprise Lakehouse.</p>
+  </header>
+
+  <section>
+    <h2>The Multi-Hop Strategy</h2>
+    <p>
+      The Medallion architecture is a data design pattern used to logically organize data in a Lakehouse. 
+      The goal is to incrementally improve the structure and quality of data as it flows through each layer of the lake.
+    </p>
+
+    <div class="medallion-grid">
+      <div class="layer-card bronze-top">
+        <h3 style="color: var(--bronze);">Bronze (Raw)</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">The landing zone for raw source data. No transformations are applied, maintaining full fidelity for audit trails.</p>
+        <div class="tech-stack">Format: Parquet/JSON<br>Retention: Permanent</div>
+      </div>
+
+      <div class="layer-card silver-top">
+        <h3 style="color: var(--silver);">Silver (Cleared)</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">Data is cleaned, filtered, and joined. This layer provides an "Enterprise View" of business entities.</p>
+        <div class="tech-stack">Format: Delta Lake<br>Quality: Validated</div>
+      </div>
+
+      <div class="layer-card gold-top">
+        <h3 style="color: var(--gold);">Gold (Curated)</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">Aggregated data ready for consumption by BI tools and Data Science models. Optimized for read performance.</p>
+        <div class="tech-stack">Format: Delta Table<br>Type: Star Schema</div>
+      </div>
+    </div>
+
+    <h2>Engineering Excellence</h2>
+    <ul>
+      <li><strong>ACID Transactions:</strong> Utilizing Delta Lake to ensure data integrity during concurrent read/write operations.</li>
+      <li><strong>Schema Evolution:</strong> Gracefully handling changes in source data without breaking downstream production pipelines.</li>
+      <li><strong>Data Lineage:</strong> Integrated with <strong>Unity Catalog</strong> to track data flow from the raw Bronze ingestion to the final Gold KPI.</li>
+    </ul>
+
+    <div style="background: #010409; padding: 30px; border-radius: 8px; border: 1px solid var(--border); margin-top: 40px;">
+        <h4 style="margin-top: 0;">Configuration-Driven Ingestion</h4>
+        <p style="font-size: 0.9rem; color: var(--text-muted);">
+            Instead of writing custom code for every table, The Data Linq uses a metadata-driven approach. 
+            By defining source-to-target mappings in JSON/YAML, we can deploy hundreds of pipelines 
+            using a single Spark template.
+        </p>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2026 THE DATA LINQ | Lakehouse Engineering Standards
+  </footer>
+</div>
+
+</body>
+</html>
