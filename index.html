@@ -26,7 +26,6 @@
       color: var(--text-main);
       display: flex;
       justify-content: center;
-      /* Ensure the body is the scroll container */
       min-height: 100vh;
     }
 
@@ -37,19 +36,17 @@
       border: 1px solid var(--border);
       border-radius: 8px;
       box-shadow: 0 40px 100px rgba(0,0,0,0.8);
-      /* REMOVED overflow: hidden; to allow sticky to work */
       position: relative;
     }
 
     .container { padding: 0 60px; }
 
-    /* --- STICKY NAV FIX --- */
     nav {
-      position: -webkit-sticky; /* Safari support */
+      position: -webkit-sticky; 
       position: sticky; 
       top: 0;           
       z-index: 1000;    
-      background: rgba(13, 17, 23, 0.95); /* Slightly more opaque for better legibility */
+      background: rgba(13, 17, 23, 0.95); 
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border);
@@ -57,7 +54,6 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      /* Ensure the corners don't poke out of the rounded wrapper */
       border-top-left-radius: 8px;
       border-top-right-radius: 8px;
     }
@@ -118,6 +114,17 @@
     .service-card ul { padding: 0; list-style: none; color: var(--text-muted); font-size: 0.95rem; margin-top: 20px; }
     .service-card li { margin-bottom: 12px; padding-left: 20px; position: relative; }
     .service-card li::before { content: "→"; position: absolute; left: 0; color: var(--accent); }
+
+    /* NEW LINK STYLING */
+    .service-link {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .service-link:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
 
     .section-title { font-size: 2rem; font-weight: 800; margin-bottom: 40px; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
     
@@ -198,7 +205,9 @@
         <div class="service-card">
           <h3>Cloud Foundations</h3>
           <ul>
-            <li>Enterprise Azure Landing Zone Implementation</li>
+            <li>
+              <a href="azure-landing-zones.html" class="service-link">Enterprise Azure Landing Zone Implementation</a>
+            </li>
             <li>Well-Architected Framework (WAF) Compliance</li>
             <li>Immutable Infrastructure via Terraform & IaC</li>
           </ul>
