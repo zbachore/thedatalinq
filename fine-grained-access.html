@@ -14,7 +14,6 @@
       --text-muted: #8b949e;
       --border: #30363d;
       --max-width: 900px;
-      --warn-color: #f85149;
     }
 
     body {
@@ -63,23 +62,6 @@
       border: 1px solid var(--border);
     }
 
-    .gotcha-box {
-      border: 1px solid var(--warn-color);
-      background: rgba(248, 81, 73, 0.05);
-      padding: 25px;
-      border-radius: 8px;
-      margin-top: 40px;
-    }
-
-    .gotcha-title {
-      color: var(--warn-color);
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
-
     footer { margin-top: 60px; border-top: 1px solid var(--border); padding-top: 20px; font-size: 0.8rem; color: var(--text-muted); }
   </style>
 </head>
@@ -115,27 +97,18 @@
     <p>In modern Databricks environments, FGAC is centrally managed via <strong>Unity Catalog</strong>. Effective implementation requires adherence to several architectural best practices:</p>
 
     <ul>
-      <li><strong>Identity Federation:</strong> Linking the Databricks Account to an Identity Provider (such as Entra ID) ensures that users and groups are consistently synchronized.</li>
+      <li><strong>Identity Federation:</strong> Linking the Databricks Account to an Identity Provider (such as Entra ID) ensures that users and groups are consistently synchronized and audited.</li>
       <li><strong>Dynamic Views & Functions:</strong> Logic is applied via SQL functions like <code>is_account_group_member()</code> to create views that filter or mask data based on runtime group membership.</li>
       <li><strong>Service Principal Utilization:</strong> Automated production pipelines are executed via Service Principals to maintain a clear audit distinction between human users and system processes.</li>
-      <li><strong>Storage Isolation:</strong> Direct access to the underlying Storage Account (ADLS Gen2) is restricted. Data access is routed exclusively through Unity Catalog External Locations to enforce governance.</li>
+      <li><strong>Storage Isolation:</strong> Direct access to the underlying Storage Account (ADLS Gen2) is restricted. Data access is routed exclusively through Unity Catalog External Locations to enforce governance and prevent bypass.</li>
     </ul>
 
     
 
-    <div class="gotcha-box">
-      <div class="gotcha-title">⚠️ TECHNICAL NOTE: Admin Role Persistence</div>
-      <p style="font-size: 0.95rem; margin-bottom: 0;">
-        Assignment of the <code>Workspace Admin</code> role to a Group is generally discouraged. In Databricks, when a group is granted workspace admin privileges, the role is effectively inherited by the individual users. 
-        <strong>If the group is subsequently removed from the workspace, the individual users often retain their Admin status.</strong> 
-        The best practice is to assign Admin roles to specific, audited individuals or manage them through strictly controlled Service Principals to ensure revocability.
-      </p>
-    </div>
-
     <h2>Conclusion</h2>
     <p>
       FGAC is a foundational component of <strong>Regulatory Compliance (GDPR, HIPAA)</strong>. It allows for the consolidation of data into a single 
-      source of truth while ensuring that sensitive information remains restricted to authorized personnel, significantly reducing the organization's risk surface.
+      source of truth while ensuring that sensitive information remains restricted to authorized personnel, significantly reducing the organization's risk surface and ensuring data integrity.
     </p>
   </section>
 
