@@ -90,55 +90,52 @@
   
   <header>
     <h1>Fine-Grained Access Control (FGAC)</h1>
-    <p style="color: var(--text-muted); font-size: 1.2rem;">Securing data at the Row, Column, and Object level.</p>
+    <p style="color: var(--text-muted); font-size: 1.2rem;">Systematic data security at the Row, Column, and Object level.</p>
   </header>
 
   <section>
-    <h2>The FGAC Philosophy</h2>
+    <h2>The FGAC Concept</h2>
     <p>
-      Traditional security relies on "Coarse-Grained" access (e.g., if you have access to the Database, you see everything in it). 
-      <strong>Fine-Grained Access Control (FGAC)</strong> shifts this to a <em>Least Privilege</em> model. 
-      We mask sensitive data and filter records based on the user's specific identity and context.
+      Traditional security models often rely on "Coarse-Grained" access, where authorization at the database or schema level grants visibility to all underlying data. 
+      <strong>Fine-Grained Access Control (FGAC)</strong> implements a <em>Least Privilege</em> model. Sensitive data is masked and records are filtered dynamically based on the specific identity and context of the requesting user.
     </p>
 
     <div class="example-grid">
       <div class="example-card">
         <h4 style="margin-top:0;">Column-Level Security</h4>
-        <p style="font-size: 0.85rem; color: var(--text-muted);">An HR analyst can see "Total Compensation," but the "Social Security Number" column is automatically masked with asterisks.</p>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">Non-authorized personnel may view general table attributes while PII columns, such as "Social Security Numbers," are automatically redacted or masked.</p>
       </div>
       <div class="example-card">
         <h4 style="margin-top:0;">Row-Level Security</h4>
-        <p style="font-size: 0.85rem; color: var(--text-muted);">A regional manager in Europe can query the global "Sales" table, but the system only returns records where <code>Region == 'EMEA'</code>.</p>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">Queries against a global dataset are restricted at the engine level to return only the rows relevant to the user's regional or departmental authorization.</p>
       </div>
     </div>
 
     <h2>Databricks Implementation: Unity Catalog</h2>
-    <p>In modern Databricks architectures, FGAC is managed via <strong>Unity Catalog</strong>. To implement this effectively, we adhere to the following requirements and best practices:</p>
+    <p>In modern Databricks environments, FGAC is centrally managed via <strong>Unity Catalog</strong>. Effective implementation requires adherence to several architectural best practices:</p>
 
     <ul>
-      <li><strong>Identity Federation:</strong> Ensure the Databricks Account is linked to Entra ID (Azure AD) so users and groups are synced correctly.</li>
-      <li><strong>Dynamic Views:</strong> Use SQL functions like <code>is_account_group_member()</code> to create views that filter data based on the current user's group membership.</li>
-      <li><strong>Service Principal Isolation:</strong> Automated pipelines should use Service Principals, not user identities, to ensure logs clearly distinguish between human and machine actions.</li>
-      <li><strong>External Locations:</strong> Never grant direct access to the Storage Account (ADLS Gen2) to end users. Always route access through Unity Catalog External Locations.</li>
+      <li><strong>Identity Federation:</strong> Linking the Databricks Account to an Identity Provider (such as Entra ID) ensures that users and groups are consistently synchronized.</li>
+      <li><strong>Dynamic Views & Functions:</strong> Logic is applied via SQL functions like <code>is_account_group_member()</code> to create views that filter or mask data based on runtime group membership.</li>
+      <li><strong>Service Principal Utilization:</strong> Automated production pipelines are executed via Service Principals to maintain a clear audit distinction between human users and system processes.</li>
+      <li><strong>Storage Isolation:</strong> Direct access to the underlying Storage Account (ADLS Gen2) is restricted. Data access is routed exclusively through Unity Catalog External Locations to enforce governance.</li>
     </ul>
 
     
 
     <div class="gotcha-box">
-      <div class="gotcha-title">⚠️ ARCHITECT'S GOTCHA: Admin Role Persistence</div>
+      <div class="gotcha-title">⚠️ TECHNICAL NOTE: Admin Role Persistence</div>
       <p style="font-size: 0.95rem; margin-bottom: 0;">
-        <strong>Never grant the <code>Workspace Admin</code> role to a Group.</strong> In Databricks, permissions granted at the workspace level behave differently than data permissions. 
-        If you grant a group Workspace Admin rights, the users in that group are assigned the role individually. 
-        <strong>Even if you later remove the group from the workspace, the individual users will retain their Admin status.</strong> 
-        Always assign Admin roles to specific, audited individuals or manage them strictly via Service Principals.
+        Assignment of the <code>Workspace Admin</code> role to a Group is generally discouraged. In Databricks, when a group is granted workspace admin privileges, the role is effectively inherited by the individual users. 
+        <strong>If the group is subsequently removed from the workspace, the individual users often retain their Admin status.</strong> 
+        The best practice is to assign Admin roles to specific, audited individuals or manage them through strictly controlled Service Principals to ensure revocability.
       </p>
     </div>
 
-    <h2>Why This Matters</h2>
+    <h2>Conclusion</h2>
     <p>
-      FGAC is the foundation of <strong>Compliance (GDPR, HIPAA)</strong>. It allows us to consolidate data into a single 
-      source of truth while guaranteeing that sensitive information remains visible only to authorized personnel, 
-      reducing the risk of internal data breaches.
+      FGAC is a foundational component of <strong>Regulatory Compliance (GDPR, HIPAA)</strong>. It allows for the consolidation of data into a single 
+      source of truth while ensuring that sensitive information remains restricted to authorized personnel, significantly reducing the organization's risk surface.
     </p>
   </section>
 
