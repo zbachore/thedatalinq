@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spark Streaming & DLT | The Data Linq</title>
+  <style>
+    :root {
+      --frame-bg: #05070a;
+      --inner-canvas: #0d1117;
+      --surface: #161b22;
+      --accent: #58a6ff;
+      --text-main: #f0f6fc;
+      --text-muted: #8b949e;
+      --border: #30363d;
+      --max-width: 900px;
+      --stream-color: #d291ff;
+    }
+
+    body {
+      margin: 0;
+      padding: 40px 0;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--frame-bg);
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      line-height: 1.6;
+    }
+
+    .page-wrapper {
+      width: 92%;
+      max-width: var(--max-width);
+      background-color: var(--inner-canvas);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 60px;
+    }
+
+    .back-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: inline-block;
+      margin-bottom: 30px;
+    }
+
+    h1 { font-size: 2.5rem; letter-spacing: -1px; margin-bottom: 10px; }
+    h2 { color: var(--accent); margin-top: 40px; font-size: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+    
+    .tech-pill {
+      display: inline-block;
+      background: rgba(210, 145, 255, 0.1);
+      color: var(--stream-color);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      border: 1px solid rgba(210, 145, 255, 0.3);
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+
+    .code-window {
+      background: #010409;
+      padding: 25px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+      color: #79c0ff;
+      margin: 30px 0;
+    }
+
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 25px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+
+    footer { margin-top: 60px; border-top: 1px solid var(--border); padding-top: 20px; font-size: 0.8rem; color: var(--text-muted); }
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+  <a href="index.html" class="back-link">← Back to Solutions</a>
+  
+  <header>
+    <h1>High-Velocity Streaming</h1>
+    <p style="color: var(--text-muted); font-size: 1.2rem;">Real-time intelligence through Spark Structured Streaming and Delta Live Tables.</p>
+  </header>
+
+  <section>
+    <div>
+      <span class="tech-pill">Delta Live Tables (DLT)</span>
+      <span class="tech-pill">Autoloader</span>
+      <span class="tech-pill">Declarative Pipelines</span>
+      <span class="tech-pill">Spark Structured Streaming</span>
+    </div>
+
+    <h2>The Evolution: Declarative Pipelines</h2>
+    <p>
+      Gone are the days of managing complex <code>checkpointLocation</code> paths and manual trigger intervals. 
+      The Data Linq leverages <strong>Delta Live Tables (DLT)</strong> to build declarative pipelines. 
+      You define the <em>target state</em> of your data, and the DLT engine handles the <em>how</em>—automatically managing task orchestration, cluster scaling, and error handling.
+    </p>
+
+    <div class="feature-card">
+      <h3 style="margin-top: 0; color: var(--stream-color);">Intelligent Ingestion with Autoloader</h3>
+      <p>
+        For streaming file data from cloud storage (ADLS Gen2), we utilize Databricks <strong>Autoloader</strong>. 
+        It uses cloud-native APIs (Queue Storage + Event Grid) to detect new files incrementally, 
+        eliminating the need for expensive file listing and ensuring sub-second latency even with millions of files.
+      </p>
+    </div>
+
+    
+
+    <h2>DLT Pattern Example</h2>
+    <div class="code-window">
+      <span style="color: #ff7b72;">@dlt.table</span><br>
+      <span style="color: #ff7b72;">def</span> <span style="color: #d2a8ff;">bronze_orders</span>():<br>
+      &nbsp;&nbsp;<span style="color: #8b949e;"># Autoloader handles schema evolution automatically</span><br>
+      &nbsp;&nbsp;<span style="color: #ff7b72;">return</span> (<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;spark.readStream.format(<span style="color: #a5d6ff;">"cloudFiles"</span>)<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;.option(<span style="color: #a5d6ff;">"cloudFiles.format"</span>, <span style="color: #a5d6ff;">"json"</span>)<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;.load(raw_path)<br>
+      &nbsp;&nbsp;)
+    </div>
+
+    <h2>Key Capabilities</h2>
+    <ul>
+      <li><strong>Schema Evolution:</strong> Autoloader automatically detects new columns in incoming JSON/Parquet files and updates the Delta table without pipeline downtime.</li>
+      <li><strong>Expectations (Data Quality):</strong> Define <code>@dlt.expect_or_fail</code> constraints to prevent "bad data" from entering the Silver layer.</li>
+      <li><strong>Enhanced Autoscaling:</strong> DLT clusters scale based on streaming backlog rather than CPU metrics, reducing costs by up to 40%.</li>
+      <li><strong>Unified Batch & Streaming:</strong> The same declarative code handles both historical backfills and real-time increments.</li>
+    </ul>
+  </section>
+
+  <footer>
+    &copy; 2026 THE DATA LINQ | High-Performance Data Engineering
+  </footer>
+</div>
+
+</body>
+</html>
