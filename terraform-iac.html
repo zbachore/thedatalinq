@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terraform & IaC | The Data Linq</title>
+  <style>
+    :root {
+      --frame-bg: #05070a;
+      --inner-canvas: #0d1117;
+      --surface: #161b22;
+      --accent: #58a6ff;
+      --text-main: #f0f6fc;
+      --text-muted: #8b949e;
+      --border: #30363d;
+      --max-width: 900px;
+    }
+
+    body {
+      margin: 0;
+      padding: 40px 0;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--frame-bg);
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      line-height: 1.6;
+    }
+
+    .page-wrapper {
+      width: 92%;
+      max-width: var(--max-width);
+      background-color: var(--inner-canvas);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 60px;
+    }
+
+    .back-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: inline-block;
+      margin-bottom: 30px;
+    }
+
+    h1 { font-size: 2.5rem; letter-spacing: -1px; margin-bottom: 10px; }
+    h2 { color: var(--accent); margin-top: 40px; font-size: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+    
+    .code-block {
+      background: #010409;
+      padding: 20px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      color: #79c0ff;
+      margin: 20px 0;
+      overflow-x: auto;
+    }
+
+    footer { margin-top: 60px; border-top: 1px solid var(--border); padding-top: 20px; font-size: 0.8rem; color: var(--text-muted); }
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+  <a href="index.html" class="back-link">← Back to Solutions</a>
+  
+  <header>
+    <h1>Immutable Infrastructure (IaC)</h1>
+    <p style="color: var(--text-muted); font-size: 1.2rem;">Eliminating "Configuration Drift" through Terraform and GitOps.</p>
+  </header>
+
+  <section>
+    <h2>What is Immutable Infrastructure?</h2>
+    <p>
+      In a traditional environment, servers and services are "mutated" (changed) over time by manual updates. This leads to 
+      <strong>Snowflake Servers</strong>—unique configurations that no one knows how to replicate. 
+    </p>
+    <p>
+      <strong>The Data Linq approach:</strong> We treat infrastructure as a disposable, versioned product. If a change is needed, 
+      we modify the code (Terraform) and redeploy the entire component. This ensures the environment is always 100% 
+      aligned with the documentation in your Git repository.
+    </p>
+
+    <div class="code-block">
+      # Example: Terraform snippet for a secured Data Lake<br>
+      resource "azurerm_storage_account" "datalake" {<br>
+      &nbsp;&nbsp;name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= "datalinqprod001"<br>
+      &nbsp;&nbsp;tier&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= "Premium"<br>
+      &nbsp;&nbsp;is_hns_enabled = true # Enables Data Lake Gen2<br>
+      }
+    </div>
+
+    <h2>The Value of Terraform</h2>
+    <ul>
+      <li><strong>Disaster Recovery:</strong> We can recreate your entire Azure footprint in a different region in minutes, not days.</li>
+      <li><strong>Auditability:</strong> Every change to your network or database is captured in a Git Commit, showing exactly <em>who</em> changed <em>what</em> and <em>when</em>.</li>
+      <li><strong>Environment Parity:</strong> Ensure that your 'Development' environment is an exact twin of 'Production', eliminating "it works on my machine" bugs.</li>
+    </ul>
+
+    <h2>Best Practices</h2>
+    <ul>
+      <li><strong>Remote State Management:</strong> Store Terraform state files in secure, locked Azure Blob Storage to prevent corruption during team collaboration.</li>
+      <li><strong>Modular Design:</strong> Build reusable modules for Databricks clusters and SQL instances to maintain consistency across the enterprise.</li>
+      <li><strong>CI/CD Integration:</strong> Automate infrastructure deployments via GitHub Actions or Azure DevOps to remove human error from the production environment.</li>
+    </ul>
+  </section>
+
+  <footer>
+    &copy; 2026 THE DATA LINQ | Enterprise Architecture Documentation
+  </footer>
+</div>
+
+</body>
+</html>
