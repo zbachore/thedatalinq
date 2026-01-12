@@ -82,6 +82,11 @@
       margin-top: 30px;
     }
 
+    .file-tag {
+        color: var(--accent);
+        font-weight: bold;
+    }
+
     @media (max-width: 768px) {
       .methodology-grid { grid-template-columns: 1fr; }
       .page-wrapper { padding: 30px; }
@@ -139,6 +144,34 @@
                   <strong style="color: var(--accent); display: block;">Automated Handshakes</strong>
                   The <code>peering</code> module automatically creates the bi-directional links required to attach new Spokes to the central Hub.
                 </li>
+            </ul>
+        </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Environment Anatomy: <span style="color: var(--accent);">spoke-dev</span></h2>
+    <p>A closer look at the file-level structure within a single environment stack. This separation of concerns allows for clean audits and scalable deployments.</p>
+    
+    <div class="methodology-grid">
+        <div class="folder-tree">
+            <span style="color: #8b949e;">stacks/spoke-dev/</span><br>
+            ├── <span class="file-tag">backend.hcl</span><br>
+            ├── <span class="file-tag">providers.tf</span><br>
+            ├── <span class="file-tag">main.tf</span><br>
+            ├── <span class="file-tag">storage.tf</span><br>
+            ├── <span class="file-tag">terraform.tfvars</span><br>
+            ├── <span style="color: #8b949e;">.terraform.lock.hcl</span><br>
+            └── <span style="color: #444;">tfplan (generated)</span>
+        </div>
+
+        <div style="font-size: 0.95rem;">
+            <h4 style="color: var(--text-main); margin-top: 0;">File Breakdown</h4>
+            <ul style="padding: 0; list-style: none; color: var(--text-muted);">
+                <li style="margin-bottom: 10px;"><strong>backend.hcl:</strong> Defines the remote state location (Azure Storage) to enable team collaboration and state locking.</li>
+                <li style="margin-bottom: 10px;"><strong>main.tf:</strong> Acts as the orchestrator, calling the standardized modules for networking and security.</li>
+                <li style="margin-bottom: 10px;"><strong>storage.tf:</strong> Dedicated resource file for ADLS Gen2, Blob containers, and lifecycle management policies.</li>
+                <li><strong>terraform.tfvars:</strong> Injects environment-specific variables such as IP ranges, region, and resource naming conventions.</li>
             </ul>
         </div>
     </div>
