@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Well-Architected Framework | The Data Linq</title>
+  <style>
+    :root {
+      --frame-bg: #05070a;
+      --inner-canvas: #0d1117;
+      --surface: #161b22;
+      --accent: #58a6ff;
+      --text-main: #f0f6fc;
+      --text-muted: #8b949e;
+      --border: #30363d;
+      --max-width: 900px;
+    }
+
+    body {
+      margin: 0;
+      padding: 40px 0;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--frame-bg);
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      line-height: 1.6;
+    }
+
+    .page-wrapper {
+      width: 92%;
+      max-width: var(--max-width);
+      background-color: var(--inner-canvas);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 60px;
+    }
+
+    .back-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: inline-block;
+      margin-bottom: 30px;
+    }
+
+    h1 { font-size: 2.5rem; letter-spacing: -1px; margin-bottom: 10px; }
+    h2 { color: var(--accent); margin-top: 40px; font-size: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+    
+    .pillar-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin: 30px 0;
+    }
+
+    .pillar-item {
+      background: var(--surface);
+      padding: 20px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+    }
+
+    .pillar-item strong { color: var(--accent); display: block; margin-bottom: 5px; }
+
+    footer { margin-top: 60px; border-top: 1px solid var(--border); padding-top: 20px; font-size: 0.8rem; color: var(--text-muted); }
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+  <a href="index.html" class="back-link">← Back to Solutions</a>
+  
+  <header>
+    <h1>Well-Architected Framework (WAF)</h1>
+    <p style="color: var(--text-muted); font-size: 1.2rem;">Building high-quality, enterprise-grade cloud solutions through five core pillars.</p>
+  </header>
+
+  <section>
+    <h2>The Five Pillars</h2>
+    <div class="pillar-grid">
+      <div class="pillar-item">
+        <strong>Reliability</strong>
+        <small>Ensuring systems recover from failures and continue to function.</small>
+      </div>
+      <div class="pillar-item">
+        <strong>Security</strong>
+        <small>Protecting data and assets from threats and unauthorized access.</small>
+      </div>
+      <div class="pillar-item">
+        <strong>Cost Optimization</strong>
+        <small>Managing costs to maximize the value delivered.</small>
+      </div>
+      <div class="pillar-item">
+        <strong>Operational Excellence</strong>
+        <small>Running and monitoring systems to deliver business value.</small>
+      </div>
+      <div class="pillar-item">
+        <strong>Performance Efficiency</strong>
+        <small>Scaling to meet changes in demand effectively.</small>
+      </div>
+    </div>
+
+    <h2>Importance of Compliance</h2>
+    <p>
+      At <strong>The Data Linq</strong>, we don't just build; we validate. WAF compliance ensures that your 
+      Data Lakehouse isn't just "running"—it's optimized for long-term sustainability. Without these checks, 
+      technical debt accumulates rapidly, leading to skyrocketing Azure bills and system instability.
+    </p>
+
+    <h2>Best Practices</h2>
+    <ul>
+      <li><strong>Automated Reviews:</strong> Use Azure Advisor and custom scoring to check your architecture against WAF benchmarks weekly.</li>
+      <li><strong>Principle of Least Privilege:</strong> Within the Security pillar, ensure identity access is scoped to the smallest possible requirement.</li>
+      <li><strong>Right-Sizing:</strong> Continuously monitor compute clusters (Databricks/Synapse) to ensure you aren't over-provisioning resources.</li>
+      <li><strong>Design for Failure:</strong> Implement multi-region disaster recovery to satisfy the Reliability pillar for mission-critical data.</li>
+    </ul>
+  </section>
+
+  <footer>
+    &copy; 2026 THE DATA LINQ | Enterprise Architecture Documentation
+  </footer>
+</div>
+
+</body>
+</html>
