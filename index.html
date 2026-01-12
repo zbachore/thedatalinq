@@ -53,6 +53,36 @@
 
     .logo { font-weight: 900; font-size: 1.5rem; letter-spacing: -1px; text-decoration: none; color: #fff; }
 
+    /* NEW: MOVING SERVICES TICKER CSS */
+    .ticker-wrap {
+      width: 100%;
+      overflow: hidden;
+      background-color: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 0;
+    }
+
+    .ticker {
+      display: flex;
+      white-space: nowrap;
+      animation: marquee 30s linear infinite;
+    }
+
+    .ticker span {
+      display: inline-block;
+      padding: 0 40px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
     /* Hero Section */
     .hero { padding: 100px 0 80px; text-align: left; }
     h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin: 0; letter-spacing: -2px; line-height: 1.1; font-weight: 800; }
@@ -136,6 +166,27 @@
     </div>
   </nav>
 
+  <div class="ticker-wrap">
+    <div class="ticker">
+      <span>Azure Databricks</span>
+      <span>Terraform</span>
+      <span>Apache Spark</span>
+      <span>Microsoft Fabric</span>
+      <span>Unity Catalog</span>
+      <span>Data Engineering</span>
+      <span>Cloud Architecture</span>
+      <span>SQL Server Always On</span>
+      <span>Azure Databricks</span>
+      <span>Terraform</span>
+      <span>Apache Spark</span>
+      <span>Microsoft Fabric</span>
+      <span>Unity Catalog</span>
+      <span>Data Engineering</span>
+      <span>Cloud Architecture</span>
+      <span>SQL Server Always On</span>
+    </div>
+  </div>
+
   <div class="container">
     <header class="hero">
       <h1>Architecting Enterprise Data Resilience.</h1>
@@ -145,8 +196,6 @@
         between complex engineering and sustainable business value.
       </p>
     </header>
-
-    
 
     <section id="services">
       <h2 class="section-title">Core Capabilities</h2>
