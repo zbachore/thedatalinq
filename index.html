@@ -15,36 +15,14 @@
       max-width: 900px;
       margin: 0 auto;
       padding: 80px 24px;
-      <section id="about" style="margin-top:64px;">
-  <h2 style="font-size:2rem; margin-bottom:12px;">About</h2>
-  <p>
-    I’m a senior cloud and data architect focused on designing resilient,
-    secure, and scalable data platforms for enterprise environments.
-    My work centers on modern cloud-native architectures that balance
-    governance, performance, and long-term maintainability.
-  </p>
-</section>
-
-<section id="services" style="margin-top:64px;">
-  <h2 style="font-size:2rem; margin-bottom:12px;">Services</h2>
-  <p>
-    Cloud data platform architecture, legacy modernization, lakehouse
-    design, governance and security strategy, and hands-on implementation
-    across Azure and Databricks ecosystems.
-  </p>
-</section>
-
-<section id="contact" style="margin-top:64px;">
-  <h2 style="font-size:2rem; margin-bottom:12px;">Contact</h2>
-  <p>
-    Email: <a href="mailto:contact@thedatalinq.com" style="color:#58a6ff;">contact@thedatalinq.com</a>
-  </p>
-</section>
-
     }
     h1 {
       font-size: 3rem;
       margin-bottom: 0.5rem;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 12px;
     }
     p {
       font-size: 1.2rem;
@@ -55,28 +33,66 @@
       margin-top: 24px;
       font-weight: 500;
     }
+    section {
+      margin-top: 64px;
+    }
+    a {
+      color: #58a6ff;
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
+
 <nav style="padding:16px 24px; border-bottom:1px solid #1f2630;">
   <div style="max-width:900px; margin:0 auto; display:flex; gap:18px; align-items:center;">
-    <a href="#about" style="color:#c9d1d9; text-decoration:none;">About</a>
-    <a href="#services" style="color:#c9d1d9; text-decoration:none;">Services</a>
-    <a href="#contact" style="color:#c9d1d9; text-decoration:none;">Contact</a>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
   </div>
 </nav>
 
-  <div class="container">
-    <h1>The Data Linq</h1>
-    <p class="tagline">
-      Cloud Architecture • Data Platforms • Modern Analytics
-    </p>
+<div class="container">
+  <h1>The Data Linq</h1>
+
+  <p class="tagline">
+    Cloud Architecture • Data Platforms • Modern Analytics
+  </p>
+
+  <p>
+    I help organizations design and modernize secure, scalable cloud data platforms.
+    Specializing in Azure, Databricks, and lakehouse architectures, I focus on pragmatic
+    solutions that reduce complexity, enforce governance, and deliver reliable analytics
+    at enterprise scale.
+  </p>
+
+  <section id="about">
+    <h2>About</h2>
     <p>
-      I help organizations design and modernize secure, scalable cloud data platforms.
-      Specializing in Azure, Databricks, and lakehouse architectures, I focus on pragmatic
-      solutions that reduce complexity, enforce governance, and deliver reliable analytics
-      at enterprise scale.
+      I’m a senior cloud and data architect focused on designing resilient,
+      secure, and scalable data platforms for enterprise environments.
+      My work centers on modern cloud-native architectures that balance
+      governance, performance, and long-term maintainability.
     </p>
-  </div>
+  </section>
+
+  <section id="services">
+    <h2>Services</h2>
+    <p>
+      Cloud data platform architecture, legacy modernization, lakehouse
+      design, governance and security strategy, and hands-on implementation
+      across Azure and Databricks ecosystems.
+    </p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>
+      Email:
+      <a href="mailto:contact@thedatalinq.com">contact@thedatalinq.com</a>
+    </p>
+  </section>
+</div>
+
 </body>
 </html>
