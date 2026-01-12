@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Microsoft Fabric | The Data Linq</title>
+  <style>
+    :root {
+      --frame-bg: #05070a;
+      --inner-canvas: #0d1117;
+      --surface: #161b22;
+      --accent: #58a6ff;
+      --text-main: #f0f6fc;
+      --text-muted: #8b949e;
+      --border: #30363d;
+      --max-width: 900px;
+      --fabric-color: #f2c811;
+    }
+
+    body {
+      margin: 0;
+      padding: 40px 0;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--frame-bg);
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      line-height: 1.6;
+    }
+
+    .page-wrapper {
+      width: 92%;
+      max-width: var(--max-width);
+      background-color: var(--inner-canvas);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 60px;
+    }
+
+    .back-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: inline-block;
+      margin-bottom: 30px;
+    }
+
+    h1 { font-size: 2.5rem; letter-spacing: -1px; margin-bottom: 10px; }
+    h2 { color: var(--accent); margin-top: 40px; font-size: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+    
+    .fabric-pill {
+      display: inline-block;
+      background: rgba(242, 200, 17, 0.1);
+      color: var(--fabric-color);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      border: 1px solid rgba(242, 200, 17, 0.3);
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+
+    .one-lake-box {
+      background: var(--surface);
+      border-left: 4px solid var(--fabric-color);
+      padding: 25px;
+      border-radius: 0 8px 8px 0;
+      margin: 30px 0;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .info-card {
+      background: #0d1117;
+      border: 1px solid var(--border);
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    footer { margin-top: 60px; border-top: 1px solid var(--border); padding-top: 20px; font-size: 0.8rem; color: var(--text-muted); }
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+  <a href="index.html" class="back-link">← Back to Solutions</a>
+  
+  <header>
+    <h1>Microsoft Fabric</h1>
+    <p style="color: var(--text-muted); font-size: 1.2rem;">End-to-end unified analytics and data governance.</p>
+  </header>
+
+  <section>
+    <div>
+      <span class="fabric-pill">OneLake</span>
+      <span class="fabric-pill">Direct Lake Mode</span>
+      <span class="fabric-pill">Shortcuts</span>
+      <span class="fabric-pill">Synapse Data Engineering</span>
+    </div>
+
+    <h2>The Unified Experience</h2>
+    <p>
+      Microsoft Fabric is an all-in-one analytics solution that covers everything from data movement to data science, Real-Time Analytics, and business intelligence. It eliminates the friction of managing disparate services by consolidating them into a single, SaaS-based platform.
+    </p>
+
+    <div class="one-lake-box">
+      <h3 style="margin-top:0; color: var(--fabric-color);">OneLake: The OneDrive for Data</h3>
+      <p style="margin-bottom:0;">
+        At the heart of Fabric is <strong>OneLake</strong>—a single, unified, logical data lake for the entire organization. Similar to how OneDrive provides a unified location for files, OneLake provides a single location for all analytics data, stored in the open <strong>Delta Parquet</strong> format.
+      </p>
+    </div>
+
+    
+
+    <h2>Core Pillars of Fabric</h2>
+    <div class="info-grid">
+      <div class="info-card">
+        <h4 style="margin-top:0;">Direct Lake Mode</h4>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">Direct Lake mode allows Power BI to read data directly from OneLake (Delta tables) without the need for refreshing datasets or duplicating data in Import mode.</p>
+      </div>
+      <div class="info-card">
+        <h4 style="margin-top:0;">Cross-Cloud Shortcuts</h4>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">Shortcuts allow for virtualization of data across different clouds (Azure, AWS, GCP) without moving or copying the underlying physical files.</p>
+      </div>
+    </div>
+
+    <h2>Architectural Principles</h2>
+    <p>Implementing Microsoft Fabric involves several key design patterns focused on efficiency and interoperability:</p>
+
+    <ul>
+      <li><strong>Standardized Open Formats:</strong> All data is stored in Delta Lake format, ensuring it is accessible by any engine—whether Fabric, Databricks, or Synapse.</li>
+      <li><strong>Centralized Governance:</strong> Security and compliance are managed through a unified interface, ensuring consistent policies across the entire data estate.</li>
+      <li><strong>Data Mesh Readiness:</strong> Fabric workspaces support a decentralized data ownership model, allowing different business units to manage their own domains within OneLake.</li>
+      <li><strong>Serverless Compute:</strong> Compute resources are abstracted and auto-scaled, allowing engineers to focus on data transformation rather than infrastructure management.</li>
+    </ul>
+
+    <h2>Conclusion</h2>
+    <p>
+      Microsoft Fabric simplifies the modern data stack by reducing the "integration tax" usually associated with stitching together multiple cloud services. It provides a high-performance environment where data is accessible, governed, and ready for AI-driven insights.
+    </p>
+  </section>
+
+  <footer>
+    &copy; 2026 THE DATA LINQ | Unified Analytics Documentation
+  </footer>
+</div>
+
+</body>
+</html>
