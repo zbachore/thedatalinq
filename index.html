@@ -6,9 +6,9 @@
   <title>The Data Linq | Enterprise Cloud & Data Architecture</title>
   <style>
     :root {
-      --frame-bg: #05070a;      /* Darkest outer frame */
-      --inner-canvas: #0d1117;   /* Main site background */
-      --surface: #161b22;       /* Component background */
+      --frame-bg: #05070a;
+      --inner-canvas: #0d1117;
+      --surface: #161b22;
       --accent: #58a6ff;
       --text-main: #f0f6fc;
       --text-muted: #8b949e;
@@ -26,9 +26,10 @@
       color: var(--text-main);
       display: flex;
       justify-content: center;
+      /* Ensure the body is the scroll container */
+      min-height: 100vh;
     }
 
-    /* THE BOXED LAYOUT */
     .page-wrapper {
       width: 92%;
       max-width: var(--max-width);
@@ -36,30 +37,34 @@
       border: 1px solid var(--border);
       border-radius: 8px;
       box-shadow: 0 40px 100px rgba(0,0,0,0.8);
-      overflow: hidden;
-      position: relative; /* Context for children */
+      /* REMOVED overflow: hidden; to allow sticky to work */
+      position: relative;
     }
 
     .container { padding: 0 60px; }
 
-    /* STICKY NAVIGATION UPDATES */
+    /* --- STICKY NAV FIX --- */
     nav {
-      position: sticky; /* Keep in place */
-      top: 0;           /* Stick to the top of the wrapper */
-      z-index: 1000;    /* Stay on top of all other elements */
-      background: rgba(13, 17, 23, 0.85); /* Transparent for glass effect */
-      backdrop-filter: blur(12px);       /* Blur content behind nav */
-      -webkit-backdrop-filter: blur(12px);
+      position: -webkit-sticky; /* Safari support */
+      position: sticky; 
+      top: 0;           
+      z-index: 1000;    
+      background: rgba(13, 17, 23, 0.95); /* Slightly more opaque for better legibility */
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border);
       padding: 1.5rem 60px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      /* Ensure the corners don't poke out of the rounded wrapper */
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
     }
 
     .logo { font-weight: 900; font-size: 1.5rem; letter-spacing: -1px; text-decoration: none; color: #fff; }
 
-    /* MOVING SERVICES TICKER */
+    /* TICKER */
     .ticker-wrap {
       width: 100%;
       overflow: hidden;
@@ -89,12 +94,12 @@
       100% { transform: translateX(-50%); }
     }
 
-    /* Hero Section */
+    /* HERO */
     .hero { padding: 100px 0 80px; text-align: left; }
     h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin: 0; letter-spacing: -2px; line-height: 1.1; font-weight: 800; }
     .hero-sub { font-size: 1.4rem; color: var(--text-muted); margin: 25px 0; max-width: 850px; line-height: 1.5; }
 
-    /* The Three Strategic Pillars */
+    /* SERVICES */
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -114,14 +119,12 @@
     .service-card li { margin-bottom: 12px; padding-left: 20px; position: relative; }
     .service-card li::before { content: "→"; position: absolute; left: 0; color: var(--accent); }
 
-    /* Impact/Performance Section */
     .section-title { font-size: 2rem; font-weight: 800; margin-bottom: 40px; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
     
     .case-study-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 80px; }
     .case-item h4 { color: var(--text-main); font-size: 1.2rem; margin: 0 0 10px 0; }
     .case-item p { color: var(--text-muted); font-size: 1rem; margin: 0; line-height: 1.6; }
 
-    /* CTA / Contact */
     .cta-section {
       background: var(--surface);
       padding: 80px 60px;
@@ -174,22 +177,8 @@
 
   <div class="ticker-wrap">
     <div class="ticker">
-      <span>Azure Databricks</span>
-      <span>Terraform</span>
-      <span>Apache Spark</span>
-      <span>Microsoft Fabric</span>
-      <span>Unity Catalog</span>
-      <span>Data Engineering</span>
-      <span>Cloud Architecture</span>
-      <span>SQL Server Always On</span>
-      <span>Azure Databricks</span>
-      <span>Terraform</span>
-      <span>Apache Spark</span>
-      <span>Microsoft Fabric</span>
-      <span>Unity Catalog</span>
-      <span>Data Engineering</span>
-      <span>Cloud Architecture</span>
-      <span>SQL Server Always On</span>
+      <span>Azure Databricks</span> <span>Terraform</span> <span>Apache Spark</span> <span>Microsoft Fabric</span> <span>Unity Catalog</span> <span>Data Engineering</span> <span>Cloud Architecture</span> <span>SQL Server Always On</span>
+      <span>Azure Databricks</span> <span>Terraform</span> <span>Apache Spark</span> <span>Microsoft Fabric</span> <span>Unity Catalog</span> <span>Data Engineering</span> <span>Cloud Architecture</span> <span>SQL Server Always On</span>
     </div>
   </div>
 
@@ -217,7 +206,7 @@
         <div class="service-card">
           <h3>Lakehouse Engineering</h3>
           <ul>
-            <li>Medallion Architecture Design (Bronze, Silver, Gold)</li>
+            <li>Medallion Architecture Design</li>
             <li>Unity Catalog Governance & Data Lineage</li>
             <li>High-Velocity Spark Structured Streaming</li>
           </ul>
@@ -225,9 +214,9 @@
         <div class="service-card">
           <h3>Governance & Security</h3>
           <ul>
-            <li>VNet Injection & Private Link Security Patterns</li>
-            <li>Fine-Grained Access Control (FGAC) Frameworks</li>
-            <li>Unified Analytics via Microsoft Fabric & Synapse</li>
+            <li>VNet Injection & Private Link Patterns</li>
+            <li>Fine-Grained Access Control (FGAC)</li>
+            <li>Unified Analytics via Microsoft Fabric</li>
           </ul>
         </div>
       </div>
@@ -238,19 +227,19 @@
       <div class="case-study-grid">
         <div class="case-item">
           <h4>Revenue-Driven Strategy</h4>
-          <p>We lead architectural discovery and Proof of Concept (PoC) initiatives that secure multi-million dollar investments for enterprise clients.</p>
+          <p>We lead architectural discovery and PoC initiatives that secure multi-million dollar investments.</p>
         </div>
         <div class="case-item">
           <h4>Platform Optimization</h4>
-          <p>Engineering workload efficiencies that reduce cloud operational expenditure while significantly improving query performance and data throughput.</p>
+          <p>Engineering workload efficiencies that reduce cloud operational expenditure while improving throughput.</p>
         </div>
         <div class="case-item">
           <h4>Global Governance</h4>
-          <p>Deploying centralized governance models using Unity Catalog to ensure data audibility and compliance across distributed global engineering teams.</p>
+          <p>Deploying centralized governance models using Unity Catalog to ensure data audibility.</p>
         </div>
         <div class="case-item">
           <h4>High Availability</h4>
-          <p>Implementing mission-critical disaster recovery strategies, including SQL Server Always On Availability Groups, for 24/7 business continuity.</p>
+          <p>Implementing disaster recovery strategies for 24/7 business continuity.</p>
         </div>
       </div>
     </section>
@@ -259,15 +248,7 @@
   <section id="contact" class="cta-section">
     <div class="container">
       <h2 style="font-size: 2.5rem; margin-top: 0;">Modernize Your Architecture</h2>
-      <p style="color: var(--text-muted); max-width: 700px; margin: 0 auto 40px; font-size: 1.1rem;">
-        Contact The Data Linq to discuss enterprise data strategy, cloud migration, or platform optimization.
-      </p>
       <a href="mailto:contact@thedatalinq.com" class="btn">Request a Strategic Consultation</a>
-      <div style="margin-top: 40px;">
-        <a href="https://www.linkedin.com/in/zbelachew/" target="_blank" style="color: var(--accent); text-decoration: none; font-size: 0.9rem; font-weight: 600;">
-          LinkedIn Corporate Profile →
-        </a>
-      </div>
     </div>
   </section>
 
