@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fine-Grained Access Control | The Data Linq</title>
+  <style>
+    :root {
+      --frame-bg: #05070a;
+      --inner-canvas: #0d1117;
+      --surface: #161b22;
+      --accent: #58a6ff;
+      --text-main: #f0f6fc;
+      --text-muted: #8b949e;
+      --border: #30363d;
+      --max-width: 900px;
+      --warn-color: #f85149;
+    }
+
+    body {
+      margin: 0;
+      padding: 40px 0;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--frame-bg);
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      line-height: 1.6;
+    }
+
+    .page-wrapper {
+      width: 92%;
+      max-width: var(--max-width);
+      background-color: var(--inner-canvas);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 60px;
+    }
+
+    .back-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: inline-block;
+      margin-bottom: 30px;
+    }
+
+    h1 { font-size: 2.5rem; letter-spacing: -1px; margin-bottom: 10px; }
+    h2 { color: var(--accent); margin-top: 40px; font-size: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+    
+    .example-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 30px 0;
+    }
+
+    .example-card {
+      background: var(--surface);
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .gotcha-box {
+      border: 1px solid var(--warn-color);
+      background: rgba(248, 81, 73, 0.05);
+      padding: 25px;
+      border-radius: 8px;
+      margin-top: 40px;
+    }
+
+    .gotcha-title {
+      color: var(--warn-color);
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    footer { margin-top: 60px; border-top: 1px solid var(--border); padding-top: 20px; font-size: 0.8rem; color: var(--text-muted); }
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+  <a href="index.html" class="back-link">← Back to Solutions</a>
+  
+  <header>
+    <h1>Fine-Grained Access Control (FGAC)</h1>
+    <p style="color: var(--text-muted); font-size: 1.2rem;">Securing data at the Row, Column, and Object level.</p>
+  </header>
+
+  <section>
+    <h2>The FGAC Philosophy</h2>
+    <p>
+      Traditional security relies on "Coarse-Grained" access (e.g., if you have access to the Database, you see everything in it). 
+      <strong>Fine-Grained Access Control (FGAC)</strong> shifts this to a <em>Least Privilege</em> model. 
+      We mask sensitive data and filter records based on the user's specific identity and context.
+    </p>
+
+    <div class="example-grid">
+      <div class="example-card">
+        <h4 style="margin-top:0;">Column-Level Security</h4>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">An HR analyst can see "Total Compensation," but the "Social Security Number" column is automatically masked with asterisks.</p>
+      </div>
+      <div class="example-card">
+        <h4 style="margin-top:0;">Row-Level Security</h4>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">A regional manager in Europe can query the global "Sales" table, but the system only returns records where <code>Region == 'EMEA'</code>.</p>
+      </div>
+    </div>
+
+    <h2>Databricks Implementation: Unity Catalog</h2>
+    <p>In modern Databricks architectures, FGAC is managed via <strong>Unity Catalog</strong>. To implement this effectively, we adhere to the following requirements and best practices:</p>
+
+    <ul>
+      <li><strong>Identity Federation:</strong> Ensure the Databricks Account is linked to Entra ID (Azure AD) so users and groups are synced correctly.</li>
+      <li><strong>Dynamic Views:</strong> Use SQL functions like <code>is_account_group_member()</code> to create views that filter data based on the current user's group membership.</li>
+      <li><strong>Service Principal Isolation:</strong> Automated pipelines should use Service Principals, not user identities, to ensure logs clearly distinguish between human and machine actions.</li>
+      <li><strong>External Locations:</strong> Never grant direct access to the Storage Account (ADLS Gen2) to end users. Always route access through Unity Catalog External Locations.</li>
+    </ul>
+
+    
+
+    <div class="gotcha-box">
+      <div class="gotcha-title">⚠️ ARCHITECT'S GOTCHA: Admin Role Persistence</div>
+      <p style="font-size: 0.95rem; margin-bottom: 0;">
+        <strong>Never grant the <code>Workspace Admin</code> role to a Group.</strong> In Databricks, permissions granted at the workspace level behave differently than data permissions. 
+        If you grant a group Workspace Admin rights, the users in that group are assigned the role individually. 
+        <strong>Even if you later remove the group from the workspace, the individual users will retain their Admin status.</strong> 
+        Always assign Admin roles to specific, audited individuals or manage them strictly via Service Principals.
+      </p>
+    </div>
+
+    <h2>Why This Matters</h2>
+    <p>
+      FGAC is the foundation of <strong>Compliance (GDPR, HIPAA)</strong>. It allows us to consolidate data into a single 
+      source of truth while guaranteeing that sensitive information remains visible only to authorized personnel, 
+      reducing the risk of internal data breaches.
+    </p>
+  </section>
+
+  <footer>
+    &copy; 2026 THE DATA LINQ | Security & Compliance Documentation
+  </footer>
+</div>
+
+</body>
+</html>
