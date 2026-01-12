@@ -3,185 +3,108 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Data Linq | Enterprise Cloud & Data Architecture</title>
+  <title>The Data Linq | Sr. Cloud Data Architecture</title>
   <style>
     :root {
-      --bg: #0d1117;
-      --surface: #161b22;
+      --bg: #0b0e14;
+      --surface: #151921;
       --text-main: #f0f6fc;
       --text-muted: #8b949e;
       --accent: #58a6ff;
+      --accent-glow: rgba(88, 166, 255, 0.15);
       --border: #30363d;
-      --transition: all 0.3s ease;
+      --transition: all 0.25s ease;
     }
 
     * { box-sizing: border-box; }
-
     body {
       margin: 0;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-family: 'Inter', -apple-system, system-ui, sans-serif;
       background: var(--bg);
       color: var(--text-main);
       line-height: 1.6;
-      scroll-behavior: smooth;
     }
 
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    
     /* Navigation */
     nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(13, 17, 23, 0.9);
-      backdrop-filter: blur(10px);
+      position: sticky; top: 0; z-index: 1000;
+      background: rgba(11, 14, 20, 0.8);
+      backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
-      padding: 1rem 0;
+      padding: 1.25rem 0;
     }
-
-    .nav-content {
-      max-width: 1000px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 24px;
-    }
-
-    .logo {
-      font-weight: 700;
-      font-size: 1.2rem;
-      letter-spacing: -0.5px;
-      color: var(--text-main);
-      text-decoration: none;
-    }
-
-    .nav-links { display: flex; gap: 32px; }
-
-    .nav-links a {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-      transition: var(--transition);
-    }
-
+    .nav-flex { display: flex; justify-content: space-between; align-items: center; }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: var(--transition); }
     .nav-links a:hover { color: var(--accent); }
 
-    /* Layout */
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
     /* Hero Section */
-    .hero {
-      padding: 120px 0 80px;
+    .hero { padding: 100px 0 60px; }
+    .badge {
+      display: inline-block; padding: 6px 14px; background: var(--accent-glow);
+      color: var(--accent); border-radius: 20px; font-size: 0.8rem;
+      font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 1.5rem;
     }
+    h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); margin: 0; line-height: 1.1; letter-spacing: -2px; }
+    .hero-sub { font-size: 1.5rem; color: var(--text-muted); margin: 1.5rem 0 2.5rem; max-width: 800px; }
 
-    h1 {
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      font-weight: 800;
-      margin: 0 0 1.5rem;
-      letter-spacing: -1px;
-      line-height: 1.1;
+    /* Tech Marquee */
+    .tech-bar {
+      display: flex; flex-wrap: wrap; gap: 1.5rem; padding: 2rem 0;
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      font-size: 0.75rem; font-weight: 800; letter-spacing: 2px; color: var(--text-muted);
     }
-
-    .tagline {
-      display: inline-block;
-      padding: 4px 12px;
-      background: rgba(88, 166, 255, 0.1);
-      color: var(--accent);
-      border-radius: 6px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 1.5rem;
-    }
-
-    .hero-lead {
-      font-size: 1.4rem;
-      color: var(--text-muted);
-      max-width: 700px;
-      margin-bottom: 2rem;
-    }
-
-    /* Sections */
-    section {
-      padding: 80px 0;
-      border-top: 1px solid var(--border);
-    }
-
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 2rem;
-      color: var(--text-main);
-    }
+    .tech-bar span { color: var(--text-main); border-right: 1px solid var(--border); padding-right: 1.5rem; }
 
     /* Services Grid */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 24px;
+    .section-title { margin-top: 80px; font-size: 2rem; font-weight: 700; }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+    .card {
+      background: var(--surface); padding: 2.5rem; border-radius: 16px;
+      border: 1px solid var(--border); transition: var(--transition);
     }
+    .card:hover { border-color: var(--accent); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+    .card h3 { margin: 0 0 1rem; font-size: 1.3rem; color: var(--accent); }
+    .card ul { padding-left: 1.2rem; color: var(--text-muted); margin: 0; }
+    .card li { margin-bottom: 0.5rem; }
 
-    .service-card {
-      background: var(--surface);
-      padding: 32px;
-      border-radius: 12px;
+    /* Impact/Metrics */
+    .metrics { display: flex; gap: 2rem; margin-top: 40px; }
+    .metric-item { flex: 1; }
+    .metric-val { font-size: 2.5rem; font-weight: 800; color: var(--accent); display: block; }
+    .metric-label { font-size: 0.9rem; color: var(--text-muted); }
+
+    /* Contact Section */
+    .cta-box {
+      background: linear-gradient(145deg, #1c2128, #111418);
+      padding: 4rem; border-radius: 24px; text-align: center; margin: 80px 0;
       border: 1px solid var(--border);
-      transition: var(--transition);
     }
+    .btn {
+      display: inline-block; background: var(--accent); color: #fff;
+      padding: 16px 40px; border-radius: 8px; font-weight: 700;
+      text-decoration: none; transition: var(--transition); margin-top: 2rem;
+    }
+    .btn:hover { filter: brightness(1.2); box-shadow: 0 0 25px var(--accent-glow); }
 
-    .service-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-4px);
-    }
-
-    .service-card h3 {
-      margin-top: 0;
-      font-size: 1.25rem;
-      color: var(--accent);
-    }
-
-    /* Contact Button */
-    .cta-button {
-      display: inline-block;
-      background: var(--accent);
-      color: #fff;
-      padding: 12px 28px;
-      border-radius: 6px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: var(--transition);
-    }
-
-    .cta-button:hover {
-      filter: brightness(1.1);
-      box-shadow: 0 0 20px rgba(88, 166, 255, 0.3);
-    }
-
-    footer {
-      padding: 40px 0;
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 0.85rem;
-    }
+    footer { padding: 40px 0; border-top: 1px solid var(--border); display: flex; justify-content: space-between; color: var(--text-muted); font-size: 0.85rem; }
 
     @media (max-width: 768px) {
-      .hero { padding: 60px 0; }
       .nav-links { display: none; }
+      .metrics { flex-direction: column; }
     }
   </style>
 </head>
 <body>
 
 <nav>
-  <div class="nav-content">
-    <a href="#" class="logo">The Data Linq</a>
+  <div class="container nav-flex">
+    <a href="#" style="text-decoration:none; color:inherit; font-weight:800; font-size:1.4rem;">The Data Linq</a>
     <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#services">Services</a>
+      <a href="#expertise">Expertise</a>
+      <a href="#strategy">Strategy</a>
       <a href="#contact">Contact</a>
     </div>
   </div>
@@ -189,61 +112,86 @@
 
 <div class="container">
   <header class="hero">
-    <div class="tagline">Enterprise Cloud Strategy</div>
-    <h1>Modern Architecture for the Data-Driven Era.</h1>
-    <p class="hero-lead">
-      I specialize in designing and modernizing secure, scalable cloud platforms 
-      that transform complex data into actionable enterprise intelligence.
+    <div class="badge">Enterprise-Scale Solutions</div>
+    <h1>Modernizing Infrastructure with Precision.</h1>
+    <p class="hero-sub">
+      Sr. Cloud Data Architect specialized in designing <strong>secure, configuration-driven</strong> 
+      architectures. I bridge the gap between complex engineering and long-term business value.
     </p>
-    <a href="#contact" class="cta-button">Discuss Your Project</a>
+    <div class="metrics">
+      <div class="metric-item">
+        <span class="metric-val">10+</span>
+        <span class="metric-label">Years of Engineering Excellence</span>
+      </div>
+      <div class="metric-item">
+        <span class="metric-val">12+</span>
+        <span class="metric-label">Professional Certifications (Azure, AWS, GCP)</span>
+      </div>
+    </div>
   </header>
 
-  <section id="about">
-    <h2>The Mission</h2>
-    <div style="max-width: 800px;">
-      <p>
-        As a Senior Cloud & Data Architect, I bridge the gap between complex engineering and 
-        business value. My focus is on creating <strong>resilient, secure, and governed</strong> 
-        data environments that scale with your organization.
-      </p>
-      <p>
-        By leveraging <strong>Azure, Databricks, and Lakehouse architectures</strong>, 
-        I help firms move away from legacy silos toward a pragmatic, unified data strategy 
-        that reduces operational overhead and ensures long-term maintainability.
-      </p>
-    </div>
-  </section>
+  <div class="tech-bar">
+    <span>AZURE WELL-ARCHITECTED</span>
+    <span>DATABRICKS UNITY CATALOG</span>
+    <span>MEDALLION ARCHITECTURE</span>
+    <span>TERRAFORM (IaC)</span>
+    <span>FABRIC</span>
+  </div>
 
-  <section id="services">
-    <h2>Strategic Expertise</h2>
+  <section id="expertise">
+    <h2 class="section-title">Architectural Expertise</h2>
     <div class="services-grid">
-      <div class="service-card">
-        <h3>Platform Architecture</h3>
-        <p>End-to-end design of cloud-native data platforms focused on high availability and performance.</p>
+      <div class="card">
+        <h3>Cloud Foundations</h3>
+        <ul>
+          <li><strong>Azure Landing Zones:</strong> Implementing scalable, secure cloud environments with baked-in governance.</li>
+          <li><strong>Well-Architected Framework:</strong> Auditing platforms for cost, security, and operational excellence.</li>
+          <li><strong>CI/CD & Automation:</strong> Accelerating velocity via Terraform, ARM templates, and DevOps pipelines.</li>
+        </ul>
       </div>
-      <div class="service-card">
-        <h3>Lakehouse Modernization</h3>
-        <p>Transitioning legacy warehouses to modern Medallion architectures using Databricks and Spark.</p>
+      <div class="card">
+        <h3>Lakehouse Strategy</h3>
+        <ul>
+          <li><strong>Medallion Architecture:</strong> Multi-layer (Bronze/Silver/Gold) engineering for reliable data pipelines.</li>
+          <li><strong>Unity Catalog:</strong> Implementing fine-grained access control and end-to-end data lineage.</li>
+          <li><strong>Streaming Analytics:</strong> Real-time ingestion using Spark Structured Streaming and Delta Live Tables.</li>
+        </ul>
       </div>
-      <div class="service-card">
-        <h3>Governance & Security</h3>
-        <p>Implementing robust IAM, data lineage, and compliance frameworks for enterprise-grade security.</p>
+      <div class="card">
+        <h3>Data Governance</h3>
+        <ul>
+          <li><strong>Enterprise Security:</strong> Managing secrets via Key Vault and enforcing VNet injection/private links.</li>
+          <li><strong>Performance Tuning:</strong> Workload optimization, efficient partitioning, and scalable compute sizing.</li>
+          <li><strong>Modern Analytics:</strong> Deploying Microsoft Fabric and Synapse for mission-critical workloads.</li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <section id="contact" style="text-align: center;">
-    <h2>Let's Connect</h2>
-    <p style="margin-bottom: 2rem; color: var(--text-muted);">
-      Ready to modernize your data infrastructure?
+  <section id="strategy">
+    <h2 class="section-title">The Value Proposition</h2>
+    <p style="max-width: 800px; color: var(--text-muted); font-size: 1.1rem;">
+      I leverage a <strong>multi-cloud perspective</strong> (Azure, AWS, GCP) to deliver resilient, maintainable architectures. 
+      From initial solution discovery to delivering multi-million-dollar Proof of Concepts, I focus on reducing 
+      complexity while enforcing the highest standards of data integrity and security.
     </p>
-    <a href="mailto:contact@thedatalinq.com" style="font-size: 1.5rem; color: var(--accent); font-weight: 700; text-decoration: none;">
-      contact@thedatalinq.com
-    </a>
+  </section>
+
+  <section id="contact">
+    <div class="cta-box">
+      <h2>Let’s Architect the Future</h2>
+      <p style="color: var(--text-muted);">Available for high-impact consultancy and platform modernization initiatives.</p>
+      <a href="mailto:contact@thedatalinq.com" class="btn">Get In Touch</a>
+      <div style="margin-top: 2rem; display: flex; justify-content: center; gap: 20px;">
+        <a href="https://www.linkedin.com/in/zbelachew/" target="_blank" style="color: var(--accent); font-size: 0.9rem;">LinkedIn Profile</a>
+        <a href="https://github.com/zbachore" target="_blank" style="color: var(--accent); font-size: 0.9rem;">GitHub Patterns</a>
+      </div>
+    </div>
   </section>
 
   <footer>
-    &copy; 2024 The Data Linq. All rights reserved.
+    <span>&copy; 2024 The Data Linq | Laurel, Maryland</span>
+    <span>Built for Scale & Security</span>
   </footer>
 </div>
 
