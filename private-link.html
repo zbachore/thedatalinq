@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VNet Injection & Private Link | The Data Linq</title>
+  <style>
+    :root {
+      --frame-bg: #05070a;
+      --inner-canvas: #0d1117;
+      --surface: #161b22;
+      --accent: #58a6ff;
+      --text-main: #f0f6fc;
+      --text-muted: #8b949e;
+      --border: #30363d;
+      --max-width: 900px;
+      --secure-color: #3fb950;
+    }
+
+    body {
+      margin: 0;
+      padding: 40px 0;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--frame-bg);
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      line-height: 1.6;
+    }
+
+    .page-wrapper {
+      width: 92%;
+      max-width: var(--max-width);
+      background-color: var(--inner-canvas);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 60px;
+    }
+
+    .back-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: inline-block;
+      margin-bottom: 30px;
+    }
+
+    h1 { font-size: 2.5rem; letter-spacing: -1px; margin-bottom: 10px; }
+    h2 { color: var(--accent); margin-top: 40px; font-size: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+    
+    .security-badge {
+      display: inline-block;
+      background: rgba(63, 185, 80, 0.1);
+      color: var(--secure-color);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      border: 1px solid rgba(63, 185, 80, 0.3);
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+
+    .pattern-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 25px;
+      border-radius: 8px;
+      margin-top: 25px;
+    }
+
+    .infra-list {
+      background: #010409;
+      padding: 20px;
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: 0.85rem;
+      color: #8b949e;
+      border: 1px solid var(--border);
+    }
+
+    footer { margin-top: 60px; border-top: 1px solid var(--border); padding-top: 20px; font-size: 0.8rem; color: var(--text-muted); }
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+  <a href="index.html" class="back-link">← Back to Solutions</a>
+  
+  <header>
+    <h1>Secure Networking Patterns</h1>
+    <p style="color: var(--text-muted); font-size: 1.2rem;">Securing the Data Plane with VNet Injection and Azure Private Link.</p>
+  </header>
+
+  <section>
+    <div>
+      <span class="security-badge">VNet Injection</span>
+      <span class="security-badge">Private Endpoints</span>
+      <span class="security-badge">NSG Hardening</span>
+      <span class="security-badge">NVA/Firewall Integration</span>
+    </div>
+
+    <h2>VNet Injection: Taking Control</h2>
+    <p>
+      By default, Databricks manages the virtual network. In an enterprise environment, we use <strong>VNet Injection</strong> 
+      to deploy Databricks clusters into a pre-configured VNet managed by the customer. This allows us to apply 
+      custom <strong>Network Security Groups (NSGs)</strong> and route traffic through a central firewall.
+    </p>
+
+    <div class="pattern-card">
+      <h3 style="margin-top: 0; color: var(--secure-color);">The Private Link Advantage</h3>
+      <p>
+        Standard data access often goes over the public internet via service endpoints. Our pattern utilizes 
+        <strong>Azure Private Link</strong> to provide private IP addresses for:
+      </p>
+      <ul style="color: var(--text-muted);">
+        <li><strong>Back-end Connectivity:</strong> Private access to ADLS Gen2, Key Vault, and SQL Databases.</li>
+        <li><strong>Front-end Connectivity:</strong> Ensuring users can only access the Databricks UI from within the corporate VPN or ExpressRoute.</li>
+        <li><strong>Web Auth:</strong> Secure authentication handshakes that never touch public DNS.</li>
+      </ul>
+    </div>
+
+    
+
+    <h2>Infrastructure Requirements</h2>
+    <div class="infra-list">
+      <span style="color: var(--accent);">// Required Subnets for Databricks VNet Injection</span><br>
+      - <span style="color: var(--text-main);">public-subnet:</span> For cluster management traffic (/26 or /24)<br>
+      - <span style="color: var(--text-main);">private-subnet:</span> For worker-to-worker communication (/26 or /24)<br>
+      - <span style="color: var(--text-main);">privatelink-subnet:</span> For hosting Storage & KeyVault Endpoints
+    </div>
+
+    <h2>Security Benefits</h2>
+    <ul>
+      <li><strong>Data Exfiltration Protection:</strong> By disabling public access on Storage Accounts and using Private Endpoints, we ensure data cannot be moved to unauthorized accounts.</li>
+      <li><strong>Custom Routing (UDR):</strong> Forced tunneling of all egress traffic to an Azure Firewall for Deep Packet Inspection (DPI).</li>
+      <li><strong>Zero Public IPs:</strong> Clusters can be deployed with No Public IP (NPIP) enabled, removing the attack surface entirely.</li>
+    </ul>
+  </section>
+
+  <footer>
+    &copy; 2026 THE DATA LINQ | Enterprise Security Standards
+  </footer>
+</div>
+
+</body>
+</html>
