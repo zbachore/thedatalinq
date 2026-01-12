@@ -1,1 +1,102 @@
-test file.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Azure Landing Zones | The Data Linq</title>
+  <style>
+    :root {
+      --frame-bg: #05070a;
+      --inner-canvas: #0d1117;
+      --surface: #161b22;
+      --accent: #58a6ff;
+      --text-main: #f0f6fc;
+      --text-muted: #8b949e;
+      --border: #30363d;
+      --max-width: 900px;
+    }
+
+    body {
+      margin: 0;
+      padding: 40px 0;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--frame-bg);
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      line-height: 1.6;
+    }
+
+    .page-wrapper {
+      width: 92%;
+      max-width: var(--max-width);
+      background-color: var(--inner-canvas);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 60px;
+    }
+
+    .back-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: inline-block;
+      margin-bottom: 30px;
+    }
+
+    h1 { font-size: 2.5rem; letter-spacing: -1px; margin-bottom: 10px; }
+    h2 { color: var(--accent); margin-top: 40px; font-size: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+    
+    .importance-box {
+      background: var(--surface);
+      border-left: 4px solid var(--accent);
+      padding: 20px;
+      margin: 30px 0;
+    }
+
+    ul { padding-left: 20px; }
+    li { margin-bottom: 15px; }
+    strong { color: var(--text-main); }
+
+    footer { margin-top: 60px; border-top: 1px solid var(--border); padding-top: 20px; font-size: 0.8rem; color: var(--text-muted); }
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+  <a href="index.html" class="back-link">← Back to Solutions</a>
+  
+  <header>
+    <h1>Enterprise Azure Landing Zones</h1>
+    <p style="color: var(--text-muted); font-size: 1.2rem;">The foundation of scalable, secure, and compliant cloud operations.</p>
+  </header>
+
+  <section class="importance-box">
+    <strong>Why it matters:</strong> Without a landing zone, organizations often face "Cloud Sprawl"—a chaotic environment where security gaps, unmanaged costs, and inconsistent networking make enterprise-grade data engineering impossible.
+  </section>
+
+  <section>
+    <h2>Core Importance</h2>
+    <ul>
+      <li><strong>Governance at Scale:</strong> Automatically apply policies (like data residency or encryption requirements) across all subscriptions using Management Groups.</li>
+      <li><strong>Network Topology:</strong> Establishes a "Hub-and-Spoke" model that centralizes security (Firewalls/VPNs) while allowing individual teams to operate in isolated "Spokes."</li>
+      <li><strong>Identity Management:</strong> Ensures Role-Based Access Control (RBAC) is consistent, preventing unauthorized access to sensitive data lakes.</li>
+    </ul>
+
+    <h2>Best Practices</h2>
+    <ul>
+      <li><strong>Adopt Infrastructure as Code (IaC):</strong> Never deploy a landing zone manually. Use Terraform or Bicep to ensure the environment is version-controlled and repeatable.</li>
+      <li><strong>Separate Duties:</strong> Distinguish between Platform landing zones (connectivity, identity) and Application landing zones (where your data workloads live).</li>
+      <li><strong>Immutable Policy:</strong> Use Azure Policy to "Deny" any resource creation that doesn't meet security standards, rather than fixing them after the fact.</li>
+      <li><strong>Plan for Connectivity:</strong> Ensure IP address spaces do not overlap with on-premises networks to allow for future ExpressRoute or VPN integrations.</li>
+    </ul>
+  </section>
+
+  <footer>
+    &copy; 2026 THE DATA LINQ | Enterprise Architecture Documentation
+  </footer>
+</div>
+
+</body>
+</html>
