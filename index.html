@@ -261,7 +261,18 @@
     <div id="chat-window" style="display: none; width: 400px; height: 600px; background: var(--inner-canvas); border: 1px solid var(--border); border-radius: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); overflow: hidden; margin-bottom: 20px;">
         <div style="background: var(--surface); padding: 15px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
             <span style="font-weight: 800; font-size: 0.9rem; color: var(--accent);">DATALINQ AI ASSISTANT</span>
-            <button onclick="toggleChat()" style="background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 1.2rem;">&times;</button>
+            <button onclick="toggleChat()" style="display: flex; align-items: center; gap: 12px; background: none; border: none; cursor: pointer; float: right; padding: 0;">
+    
+    <span style="background: var(--surface); color: var(--text-main); padding: 8px 16px; border-radius: 20px; border: 1px solid var(--border); font-size: 0.85rem; font-weight: 600; box-shadow: 0 4px 15px rgba(0,0,0,0.3); letter-spacing: 0.5px;">
+        ASK ME A QUESTION
+    </span>
+
+    <div style="width: 60px; height: 60px; border-radius: 50%; background: var(--accent); display: flex; justify-content: center; align-items: center; box-shadow: 0 10px 20px rgba(0,0,0,0.3);">
+        <svg viewBox="0 0 24 24" width="30" height="30" fill="white">
+            <path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.38-1 1.72V7h1a2 2 0 0 1 2 2v2h1a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-1v1a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2v-1H6a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h1V9a2 2 0 0 1 2-2h1V5.72c-.6-.34-1-1.01-1-1.72a2 2 0 0 1 2-2M9 9v2h2V9H9m4 0v2h2V9h-2M9 14v2h6v-2H9z"/>
+        </svg>
+    </div>
+</button>
         </div>
         <iframe src="https://datalinq.streamlit.app/?embed=true" style="width: 100%; height: calc(100% - 50px); border: none;"></iframe>
     </div>
