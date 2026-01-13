@@ -255,34 +255,44 @@
     </section>
   </div>
 
-
-<div id="chat-widget-container" style="position: fixed; bottom: 30px; right: 30px; z-index: 9999; font-family: 'Inter', sans-serif;">
+<div id="chat-widget-container" style="position: fixed; bottom: 30px; right: 30px; z-index: 9999; font-family: 'Inter', sans-serif; display: flex; flex-direction: column; align-items: flex-end;">
     
-    <div id="chat-window" style="display: none; width: 400px; height: 600px; background: var(--inner-canvas); border: 1px solid var(--border); border-radius: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); overflow: hidden; margin-bottom: 20px;">
-        <div style="background: var(--surface); padding: 15px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
-            <span style="font-weight: 800; font-size: 0.9rem; color: var(--accent);">DATALINQ AI ASSISTANT</span>
-            <button onclick="toggleChat()" style="display: flex; align-items: center; gap: 12px; background: none; border: none; cursor: pointer; float: right; padding: 0;">
-    
-    <span style="background: var(--surface); color: var(--text-main); padding: 8px 16px; border-radius: 20px; border: 1px solid var(--border); font-size: 0.85rem; font-weight: 600; box-shadow: 0 4px 15px rgba(0,0,0,0.3); letter-spacing: 0.5px;">
-        ASK ME A QUESTION
-    </span>
-
-    <div style="width: 60px; height: 60px; border-radius: 50%; background: var(--accent); display: flex; justify-content: center; align-items: center; box-shadow: 0 10px 20px rgba(0,0,0,0.3);">
-        <svg viewBox="0 0 24 24" width="30" height="30" fill="white">
-            <path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.38-1 1.72V7h1a2 2 0 0 1 2 2v2h1a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-1v1a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2v-1H6a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h1V9a2 2 0 0 1 2-2h1V5.72c-.6-.34-1-1.01-1-1.72a2 2 0 0 1 2-2M9 9v2h2V9H9m4 0v2h2V9h-2M9 14v2h6v-2H9z"/>
-        </svg>
-    </div>
-</button>
+    <div id="chat-window" style="display: none; width: 400px; height: 600px; background: #0d1117; border: 1px solid #30363d; border-radius: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); overflow: hidden; margin-bottom: 20px;">
+        <div style="background: #161b22; padding: 15px; border-bottom: 1px solid #30363d; display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-weight: 800; font-size: 0.9rem; color: #58a6ff;">DATALINQ AI ASSISTANT</span>
+            <button onclick="toggleChat()" style="background: none; border: none; color: #8b949e; cursor: pointer; font-size: 1.5rem; line-height: 1;">&times;</button>
         </div>
         <iframe src="https://datalinq.streamlit.app/?embed=true" style="width: 100%; height: calc(100% - 50px); border: none;"></iframe>
     </div>
 
-    <button onclick="toggleChat()" style="width: 60px; height: 60px; border-radius: 50%; background: var(--accent); border: none; cursor: pointer; box-shadow: 0 10px 20px rgba(0,0,0,0.3); display: flex; justify-content: center; align-items: center; float: right;">
-        <svg viewBox="0 0 24 24" width="30" height="30" fill="white">
-            <path d="M12 2C6.477 2 2 6.477 2 12c0 1.821.487 3.53 1.338 5L2 22l5-1.338c1.47.851 3.179 1.338 5 1.338 5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18c-1.475 0-2.858-.412-4.037-1.125l-.29-.176-2.973.795.795-2.973-.176-.29C4.412 14.858 4 13.475 4 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/>
-        </svg>
-    </button>
+    <div id="chat-button-wrapper" style="display: flex; align-items: center; gap: 12px; cursor: pointer;" onclick="toggleChat()">
+        
+        <span id="chat-label" style="background: #161b22; color: #f0f6fc; padding: 10px 18px; border-radius: 20px; border: 1px solid #30363d; font-size: 0.85rem; font-weight: 700; box-shadow: 0 4px 15px rgba(0,0,0,0.3); letter-spacing: 0.5px; white-space: nowrap;">
+            ASK ME A QUESTION
+        </span>
+
+        <div style="width: 60px; height: 60px; border-radius: 50%; background: #58a6ff; display: flex; justify-content: center; align-items: center; box-shadow: 0 10px 20px rgba(0,0,0,0.3); transition: transform 0.3s ease;">
+            <svg viewBox="0 0 24 24" width="30" height="30" fill="white">
+                <path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.38-1 1.72V7h1a2 2 0 0 1 2 2v2h1a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-1v1a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2v-1H6a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h1V9a2 2 0 0 1 2-2h1V5.72c-.6-.34-1-1.01-1-1.72a2 2 0 0 1 2-2M9 9v2h2V9H9m4 0v2h2V9h-2M9 14v2h6v-2H9z"/>
+            </svg>
+        </div>
+    </div>
 </div>
+
+<script>
+    function toggleChat() {
+        var chatWin = document.getElementById('chat-window');
+        var chatLabel = document.getElementById('chat-label');
+        
+        if (chatWin.style.display === 'none') {
+            chatWin.style.display = 'block';
+            chatLabel.style.display = 'none'; // Optional: hide label when chat is open
+        } else {
+            chatWin.style.display = 'none';
+            chatLabel.style.display = 'block'; // Show label when chat is closed
+        }
+    }
+</script>
 
 <script>
     function toggleChat() {
