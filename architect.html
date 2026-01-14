@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Architect & Methodology | The Data Linq</title>
+  <title>Architecture Repository | The Data Linq</title>
   <style>
     :root {
       --frame-bg: #05070a;
@@ -16,17 +16,27 @@
       --max-width: 1100px;
     }
     body { margin: 0; padding: 60px 0; font-family: 'Inter', sans-serif; background-color: var(--frame-bg); color: var(--text-main); display: flex; justify-content: center; }
-    .page-wrapper { width: 92%; max-width: var(--max-width); background-color: var(--inner-canvas); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+    .page-wrapper { width: 92%; max-width: var(--max-width); background-color: var(--inner-canvas); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; box-shadow: 0 40px 100px rgba(0,0,0,0.8); }
     .container { padding: 60px; }
-    nav { background: rgba(13, 17, 23, 0.98); border-bottom: 1px solid var(--border); padding: 1.5rem 60px; display: flex; justify-content: space-between; }
-    .logo { font-weight: 900; text-decoration: none; color: #fff; }
+    nav { background: rgba(13, 17, 23, 0.98); border-bottom: 1px solid var(--border); padding: 1.5rem 60px; display: flex; justify-content: space-between; align-items: center;}
+    .logo { font-weight: 900; text-decoration: none; color: #fff; letter-spacing: -1px; }
     
     .method-box { background: var(--surface); border: 1px solid var(--border); padding: 30px; border-radius: 4px; margin-bottom: 30px; }
-    .tag { display: inline-block; background: rgba(88, 166, 255, 0.1); color: var(--accent); padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; margin-right: 10px; }
+    .tag { display: inline-block; background: rgba(88, 166, 255, 0.1); color: var(--accent); padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: 800; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
     
-    h2 { border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-top: 50px; }
+    h1 { font-size: 3rem; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 20px; }
+    h2 { font-size: 1.5rem; font-weight: 700; border-bottom: 1px solid var(--border); padding-bottom: 15px; margin-top: 60px; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); }
+    h3 { margin-top: 0; font-size: 1.2rem; }
+    
     .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-    code { color: var(--accent); font-family: monospace; }
+    code { color: var(--accent); font-family: 'Roboto Mono', monospace; background: rgba(88, 166, 255, 0.05); padding: 2px 5px; border-radius: 3px; }
+    
+    .stack-list { column-count: 2; list-style: none; padding: 0; margin: 0; }
+    .stack-list li { margin-bottom: 15px; color: var(--text-muted); font-size: 0.95rem; }
+    .stack-list strong { color: var(--text-main); display: block; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    .doc-link { color: var(--accent); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; margin-top: 15px; font-size: 0.9rem; }
+    .doc-link:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
@@ -34,53 +44,70 @@
 <div class="page-wrapper">
   <nav>
     <a href="index.html" class="logo">THE DATA LINQ</a>
-    <a href="index.html" style="color: var(--text-muted); text-decoration: none; font-weight: 600;">← BACK TO HOME</a>
+    <a href="index.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px;">← BACK TO INDEX</a>
   </nav>
 
   <div class="container">
-    <span class="tag">PRINCIPAL ARCHITECT</span>
-    <h1>Solutions Repository & Methodology</h1>
-    <p style="color: var(--text-muted); font-size: 1.2rem; line-height: 1.6;">
-      Founded by a Senior Cloud Architect with a decade of experience across <strong>Cognizant</strong> and <strong>Johns Hopkins</strong>, 
-      The Data Linq is dedicated to documenting and deploying resilient, configuration-driven data platforms.
+    <span class="tag">Technical Manifesto</span>
+    <h1>Architectural Methodology</h1>
+    <p style="color: var(--text-muted); font-size: 1.25rem; line-height: 1.6; max-width: 850px;">
+      The Data Linq repository is a specialized knowledge base for <strong>Enterprise Data Standards</strong>. 
+      Our objective is to codify the patterns required to build resilient, sovereign, and configuration-driven 
+      cloud platforms for the global engineering community.
     </p>
 
-    <h2>Architectural Principles</h2>
+    <h2>Engineering Principles</h2>
     <div class="grid">
       <div class="method-box">
-        <span class="tag">01</span>
-        <h3>Configuration-Driven ETL</h3>
-        <p style="font-size: 0.9rem; color: var(--text-muted);">Reducing technical debt by utilizing <code>JSON/YAML</code> metadata to drive PySpark and Delta Live Tables pipelines, ensuring 100% idempotency.</p>
+        <span class="tag">Framework 01</span>
+        <h3>Metadata-Driven Orchestration</h3>
+        <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6;">
+          Eliminating hard-coded logic by utilizing <code>JSON/YAML</code> definitions to drive compute. This enables 
+          system-wide idempotency and rapid disaster recovery of data states.
+        </p>
+        <a href="#" class="doc-link">View Documentation Pattern →</a>
       </div>
       <div class="method-box">
-        <span class="tag">02</span>
-        <h3>Immutable Infrastructure</h3>
-        <p style="font-size: 0.9rem; color: var(--text-muted);">Utilizing <code>Terraform</code> and <code>Azure DevOps CI/CD</code> to ensure that all Landing Zones and Lakehouses are reproducible and version-controlled.</p>
+        <span class="tag">Framework 02</span>
+        <h3>Infrastructure Sovereignty</h3>
+        <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6;">
+          Defining Landing Zones as <strong>Immutable Infrastructure</strong>. By utilizing <code>Terraform</code> 
+          modularization, we ensure that enterprise security perimeters are auditable and reproducible.
+        </p>
+        <a href="#" class="doc-link">View IaC Blueprint →</a>
       </div>
     </div>
 
-    <h2>Technical Reference Stack</h2>
-    <p>Our repository focuses on the following primary stacks for enterprise impact:</p>
+    <h2>Standardized Technology Stack</h2>
     <div class="method-box">
-      <ul style="column-count: 2; line-height: 2; color: var(--text-muted);">
-        <li><strong>Compute:</strong> Azure Databricks, Apache Spark</li>
-        <li><strong>Orchestration:</strong> ADF, Airflow</li>
-        <li><strong>Governance:</strong> Unity Catalog, Microsoft Purview</li>
-        <li><strong>Storage:</strong> Delta Lake, ADLS Gen2</li>
-        <li><strong>DevOps:</strong> Terraform, GitHub Actions</li>
-        <li><strong>Analytics:</strong> Microsoft Fabric, Power BI</li>
+      <ul class="stack-list">
+        <li><strong>Unified Compute</strong> Azure Databricks, Apache Spark (3.x), Photon Engine</li>
+        <li><strong>Governance & Lineage</strong> Unity Catalog, Microsoft Purview, Fine-Grained Access</li>
+        <li><strong>Infrastructure</strong> Terraform, ARM, Azure DevOps (CI/CD)</li>
+        <li><strong>Storage Layer</strong> Delta Lake, ADLS Gen2, Medallion Schemas</li>
+        <li><strong>Orchestration</strong> Airflow, ADF, DLT (Delta Live Tables)</li>
+        <li><strong>Advanced Analytics</strong> Microsoft Fabric, Power BI (Direct Lake)</li>
       </ul>
     </div>
 
-    <h2>The "Impact" Goal</h2>
-    <p style="color: var(--text-muted);">
-      We are committed to sharing <strong>Well-Architected</strong> patterns that help the global community build faster and more securely. 
-      Our focus is on the <strong>Medallion Architecture</strong> and <strong>SLED20</strong> administrative schemas.
+    <h2>Architectural Provenance</h2>
+    <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 30px;">
+      The patterns documented here have been validated across large-scale institutional environments, including 
+      public sector healthcare (SLED20) and global cloud migrations. We focus on the implementation of 
+      <strong>Well-Architected Framework (WAF)</strong> pillars to ensure long-term operational excellence.
     </p>
+    
+    <div class="method-box" style="border-left: 4px solid var(--accent);">
+      <h3 style="margin-bottom: 10px;">Repository Mission</h3>
+      <p style="font-size: 0.95rem; color: var(--text-muted); margin: 0;">
+        This site serves as a contribution to the cloud community. For technical inquiries regarding the 
+        standardization of these patterns or contribution requests, please refer to the primary index.
+      </p>
+    </div>
   </div>
 
-  <footer style="padding: 40px; text-align: center; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--text-muted);">
-    &copy; 2026 THE DATA LINQ | ARCHITECTURAL SOLUTIONS REPOSITORY
+  <footer style="padding: 40px; text-align: center; border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase;">
+    &copy; 2026 THE DATA LINQ | DOCUMENTATION REPOSITORY | LAUREL, MARYLAND
   </footer>
 </div>
 
