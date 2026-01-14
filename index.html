@@ -88,17 +88,36 @@
       gap: 24px;
       margin: 40px 0;
     }
+
+    /* RESTORED: Interactive Hover Movement */
     .service-card {
       background: var(--surface);
       padding: 40px;
       border: 1px solid var(--border);
       border-radius: 4px;
-      transition: 0.3s;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
+    .service-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+
     .service-card h3 { color: var(--accent); margin-top: 0; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1.5px; }
     .service-card ul { padding: 0; list-style: none; color: var(--text-muted); font-size: 0.95rem; margin-top: 20px; }
     .service-card li { margin-bottom: 12px; padding-left: 20px; position: relative; }
     .service-card li::before { content: "→"; position: absolute; left: 0; color: var(--accent); }
+
+    /* RESTORED: Link Styling */
+    .service-link {
+      color: inherit;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+    .service-link:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
 
     .section-title { font-size: 2rem; font-weight: 800; margin-bottom: 40px; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
     
@@ -120,7 +139,9 @@
       border-radius: 4px;
       font-weight: 700;
       display: inline-block;
+      transition: 0.3s;
     }
+    .btn:hover { filter: brightness(1.1); box-shadow: 0 0 20px rgba(88, 166, 255, 0.4); }
 
     footer {
       padding: 40px 60px;
@@ -164,32 +185,36 @@
     <a href="capabilities.html" class="view-all-link">View All 12+ Industry Credentials →</a>
 
     <section id="services">
-      <h2 class="section-title">Core Capabilities</h2>
+      <h2 class="section-title">Reference Patterns</h2>
       <div class="services-grid">
+        
         <div class="service-card">
           <h3>Cloud Foundations</h3>
           <ul>
-            <li>Enterprise Azure Landing Zone Implementation</li>
-            <li>Well-Architected Framework (WAF) Compliance</li>
-            <li>Immutable Infrastructure via Terraform & IaC</li>
+            <li><a href="architect.html#landing-zones" class="service-link">Enterprise Azure Landing Zone Implementation</a></li>
+            <li><a href="architect.html#waf" class="service-link">Well-Architected Framework (WAF) Compliance</a></li>
+            <li><a href="architect.html#terraform" class="service-link">Immutable Infrastructure via Terraform & IaC</a></li>
           </ul>
         </div>
+
         <div class="service-card">
           <h3>Lakehouse Engineering</h3>
           <ul>
-            <li>Medallion Architecture Design (Bronze, Silver, Gold)</li>
-            <li>Unity Catalog Governance & Data Lineage</li>
-            <li>High-Velocity Spark Structured Streaming</li>
+            <li><a href="architect.html#medallion" class="service-link">Medallion Architecture Design (Bronze, Silver, Gold)</a></li>
+            <li><a href="architect.html#unity" class="service-link">Unity Catalog Governance & Data Lineage</a></li>
+            <li><a href="architect.html#spark" class="service-link">High-Velocity Spark Structured Streaming</a></li>
           </ul>
         </div>
+
         <div class="service-card">
           <h3>Governance & Security</h3>
           <ul>
-            <li>VNet Injection & Private Link Security Patterns</li>
-            <li>Fine-Grained Access Control (FGAC) Frameworks</li>
-            <li>Unified Analytics via Microsoft Fabric & Synapse</li>
+            <li><a href="architect.html#vnet" class="service-link">VNet Injection & Private Link Security Patterns</a></li>
+            <li><a href="architect.html#fgac" class="service-link">Fine-Grained Access Control (FGAC) Frameworks</a></li>
+            <li><a href="architect.html#fabric" class="service-link">Unified Analytics via Microsoft Fabric & Synapse</a></li>
           </ul>
         </div>
+        
       </div>
     </section>
 
@@ -218,8 +243,8 @@
 
   <section id="contact" class="cta-section">
     <div class="container">
-      <h2 style="font-size: 2.5rem; margin-top: 0;">Modernize Your Architecture</h2>
-      <a href="mailto:contact@thedatalinq.com" class="btn">Request a Strategic Consultation</a>
+      <h2 style="font-size: 2.5rem; margin-top: 0;">Collaborate on Architecture</h2>
+      <a href="mailto:contact@thedatalinq.com" class="btn">Connect via Technical Consultation</a>
     </div>
   </section>
 
