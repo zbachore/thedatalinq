@@ -16,15 +16,19 @@
       --max-width: 900px;
     }
 
+    * { box-sizing: border-box; }
+
     body {
       margin: 0;
-      padding: 40px 0;
+      padding: 0 0 40px 0;
       font-family: 'Inter', sans-serif;
       background-color: var(--frame-bg);
       color: var(--text-main);
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      align-items: center;
       line-height: 1.6;
+      min-height: 100vh;
     }
 
     .page-wrapper {
@@ -32,28 +36,46 @@
       max-width: var(--max-width);
       background-color: var(--inner-canvas);
       border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 60px;
+      border-top: none;
+      border-radius: 0 0 8px 8px;
       box-shadow: 0 40px 100px rgba(0,0,0,0.8);
+      position: relative;
     }
+
+    /* FIXED STICKY NAVIGATION */
+    nav {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      background: rgba(13, 17, 23, 0.9);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .logo { font-weight: 900; text-decoration: none; color: #fff; letter-spacing: -1px; }
+
+    .container { padding: 40px 60px 60px 60px; }
 
     .back-link {
       color: var(--accent);
       text-decoration: none;
       font-weight: 600;
-      font-size: 0.9rem;
-      display: inline-block;
-      margin-bottom: 30px;
-      transition: transform 0.2s ease;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: color 0.2s ease;
     }
-    .back-link:hover {
-        transform: translateX(-5px);
-    }
+    .back-link:hover { color: #fff; }
 
-    h1 { font-size: 2.5rem; letter-spacing: -1px; margin-bottom: 10px; }
-    h2 { color: var(--accent); margin-top: 40px; font-size: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
+    h1 { font-size: 2.5rem; letter-spacing: -1px; margin-bottom: 10px; margin-top: 0; }
+    h2 { color: var(--accent); margin-top: 40px; font-size: 1.3rem; border-bottom: 1px solid var(--border); padding-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
     
-    /* --- ANIMATED IMPORTANCE BOX --- */
     .importance-box {
       background: var(--surface);
       border-left: 4px solid var(--accent);
@@ -62,14 +84,11 @@
       border-radius: 0 4px 4px 0;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
-
     .importance-box:hover {
-        transform: scale(1.02);
+        transform: scale(1.01);
         background: #1c2128;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     }
 
-    /* --- ANIMATED CONTENT SECTIONS --- */
     .content-card {
         background: var(--surface);
         border: 1px solid var(--border);
@@ -78,7 +97,6 @@
         margin-top: 20px;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
-
     .content-card:hover {
         transform: translateY(-5px);
         border-color: var(--accent);
@@ -91,51 +109,61 @@
     
     strong { color: var(--text-main); }
 
-    footer { margin-top: 60px; border-top: 1px solid var(--border); padding-top: 20px; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+    footer { 
+      margin-top: 60px; 
+      border-top: 1px solid var(--border); 
+      padding-top: 30px; 
+      font-size: 0.75rem; 
+      color: var(--text-muted); 
+      text-transform: uppercase; 
+      letter-spacing: 1px; 
+      text-align: center;
+    }
   </style>
 </head>
 <body>
 
 <div class="page-wrapper">
-  <a href="index.html" class="back-link">← Back to Solutions</a>
-  
-  <header>
-    <h1>Enterprise Azure Landing Zones</h1>
-    <p style="color: var(--text-muted); font-size: 1.2rem;">The foundation of scalable, secure, and compliant cloud operations.</p>
-  </header>
+  <nav>
+    <a href="index.html" class="logo">THE DATA LINQ</a>
+    <a href="index.html" class="back-link">← Back to Index</a>
+  </nav>
 
-  
+  <div class="container">
+    <header>
+      <h1>Enterprise Azure Landing Zones</h1>
+      <p style="color: var(--text-muted); font-size: 1.2rem;">The foundation of scalable, secure, and compliant cloud operations.</p>
+    </header>
 
-  <section class="importance-box">
-    <strong>Why it matters:</strong> Without a landing zone, organizations often face "Cloud Sprawl"—a chaotic environment where security gaps, unmanaged costs, and inconsistent networking make enterprise-grade data engineering impossible.
-  </section>
+    <section class="importance-box">
+      <strong>Why it matters:</strong> Without a landing zone, organizations often face "Cloud Sprawl"—a chaotic environment where security gaps, unmanaged costs, and inconsistent networking make enterprise-grade data engineering impossible.
+    </section>
 
-  <section>
-    <h2>Core Importance</h2>
-    <div class="content-card">
-        <ul>
-          <li><strong>Governance at Scale:</strong> Automatically apply policies (like data residency or encryption requirements) across all subscriptions using Management Groups.</li>
-          <li><strong>Network Topology:</strong> Establishes a "Hub-and-Spoke" model that centralizes security (Firewalls/VPNs) while allowing individual teams to operate in isolated "Spokes."</li>
-          <li><strong>Identity Management:</strong> Ensures Role-Based Access Control (RBAC) is consistent, preventing unauthorized access to sensitive data lakes.</li>
-        </ul>
-    </div>
+    <section>
+      <h2>Core Importance</h2>
+      <div class="content-card">
+          <ul>
+            <li><strong>Governance at Scale:</strong> Automatically apply policies (like data residency or encryption requirements) across all subscriptions using Management Groups.</li>
+            <li><strong>Network Topology:</strong> Establishes a "Hub-and-Spoke" model that centralizes security (Firewalls/VPNs) while allowing individual teams to operate in isolated "Spokes."</li>
+            <li><strong>Identity Management:</strong> Ensures Role-Based Access Control (RBAC) is consistent, preventing unauthorized access to sensitive data lakes.</li>
+          </ul>
+      </div>
 
-    
+      <h2>Best Practices</h2>
+      <div class="content-card">
+          <ul>
+            <li><strong>Adopt Infrastructure as Code (IaC):</strong> Never deploy a landing zone manually. Use Terraform or Bicep to ensure the environment is version-controlled and repeatable.</li>
+            <li><strong>Separate Duties:</strong> Distinguish between Platform landing zones (connectivity, identity) and Application landing zones (where your data workloads live).</li>
+            <li><strong>Immutable Policy:</strong> Use Azure Policy to "Deny" any resource creation that doesn't meet security standards, rather than fixing them after the fact.</li>
+            <li><strong>Plan for Connectivity:</strong> Ensure IP address spaces do not overlap with on-premises networks to allow for future ExpressRoute or VPN integrations.</li>
+          </ul>
+      </div>
+    </section>
 
-    <h2>Best Practices</h2>
-    <div class="content-card">
-        <ul>
-          <li><strong>Adopt Infrastructure as Code (IaC):</strong> Never deploy a landing zone manually. Use Terraform or Bicep to ensure the environment is version-controlled and repeatable.</li>
-          <li><strong>Separate Duties:</strong> Distinguish between Platform landing zones (connectivity, identity) and Application landing zones (where your data workloads live).</li>
-          <li><strong>Immutable Policy:</strong> Use Azure Policy to "Deny" any resource creation that doesn't meet security standards, rather than fixing them after the fact.</li>
-          <li><strong>Plan for Connectivity:</strong> Ensure IP address spaces do not overlap with on-premises networks to allow for future ExpressRoute or VPN integrations.</li>
-        </ul>
-    </div>
-  </section>
-
-  <footer>
-    &copy; 2026 THE DATA LINQ | Enterprise Architecture Documentation | Laurel, Maryland
-  </footer>
+    <footer>
+      &copy; 2026 SIMPLY CLOUD LLC dba THE DATA LINQ | LAUREL, MARYLAND
+    </footer>
+  </div>
 </div>
 
 </body>

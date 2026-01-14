@@ -15,33 +15,68 @@
       --border: #30363d;
       --max-width: 1100px;
     }
-    body { margin: 0; padding: 60px 0; font-family: 'Inter', sans-serif; background-color: var(--frame-bg); color: var(--text-main); display: flex; justify-content: center; }
+
+    * { box-sizing: border-box; }
+
+    /* Updated Body: No top padding to allow sticky nav to touch edge */
+    body { 
+        margin: 0; 
+        padding: 0 0 40px 0; 
+        font-family: 'Inter', sans-serif; 
+        background-color: var(--frame-bg); 
+        color: var(--text-main); 
+        display: flex; 
+        flex-direction: column;
+        align-items: center; 
+        min-height: 100vh;
+    }
     
-    .page-wrapper { width: 92%; max-width: var(--max-width); background-color: var(--inner-canvas); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; box-shadow: 0 40px 100px rgba(0,0,0,0.8); }
+    .page-wrapper { 
+        width: 92%; 
+        max-width: var(--max-width); 
+        background-color: var(--inner-canvas); 
+        border: 1px solid var(--border); 
+        border-top: none; /* Looks better flush against top */
+        border-radius: 0 0 8px 8px; 
+        box-shadow: 0 40px 100px rgba(0,0,0,0.8); 
+        /* overflow: hidden REMOVED to allow position:sticky to function */
+    }
     
     .container { padding: 60px; }
     
-    nav { background: rgba(13, 17, 23, 0.98); border-bottom: 1px solid var(--border); padding: 1.5rem 60px; display: flex; justify-content: space-between; align-items: center;}
+    /* FIXED STICKY NAVIGATION */
+    nav { 
+        position: sticky;
+        top: 0;
+        width: 100%;
+        background: rgba(13, 17, 23, 0.9); 
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border); 
+        padding: 1.5rem 60px; 
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center;
+        z-index: 1000;
+        border-radius: 0;
+    }
     
     .logo { font-weight: 900; text-decoration: none; color: #fff; letter-spacing: -1px; }
 
-    /* --- ANIMATED CARDS (THE FRAMES) --- */
     .method-box { 
         background: var(--surface); 
         border: 1px solid var(--border); 
         padding: 30px; 
         border-radius: 4px; 
         margin-bottom: 30px;
-        /* Interactive Transition Settings */
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         position: relative;
     }
 
-    /* Hover Animation Trigger */
     .method-box:hover {
-        transform: translateY(-8px); /* Lifts the frame */
-        border-color: var(--accent); /* Changes border color */
-        box-shadow: 0 20px 40px rgba(88, 166, 255, 0.1); /* Subtle blue glow */
+        transform: translateY(-8px); 
+        border-color: var(--accent); 
+        box-shadow: 0 20px 40px rgba(88, 166, 255, 0.1); 
         cursor: pointer;
     }
 
@@ -51,10 +86,7 @@
     h2 { font-size: 1.5rem; font-weight: 700; border-bottom: 1px solid var(--border); padding-bottom: 15px; margin-top: 60px; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); }
     h3 { margin-top: 0; font-size: 1.2rem; transition: color 0.3s ease; }
     
-    /* Change header color on hover */
-    .method-box:hover h3 {
-        color: var(--accent);
-    }
+    .method-box:hover h3 { color: var(--accent); }
 
     .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
     
@@ -66,10 +98,9 @@
 
     .doc-link { color: var(--accent); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; margin-top: 15px; font-size: 0.9rem; transition: gap 0.2s ease; }
     
-    /* Arrow movement on hover */
-    .method-box:hover .doc-link {
-        gap: 12px;
-    }
+    .method-box:hover .doc-link { gap: 12px; }
+
+    footer { padding: 40px; text-align: center; border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; }
   </style>
 </head>
 <body>
@@ -77,7 +108,7 @@
 <div class="page-wrapper">
   <nav>
     <a href="index.html" class="logo">THE DATA LINQ</a>
-    <a href="index.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px;">← BACK TO INDEX</a>
+    <a href="index.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; transition: color 0.2s;">← BACK TO INDEX</a>
   </nav>
 
   <div class="container">
@@ -88,8 +119,6 @@
       Our objective is to codify the patterns required to build resilient, sovereign, and configuration-driven 
       cloud platforms for the global engineering community.
     </p>
-
-    
 
     <h2>Engineering Principles</h2>
     <div class="grid">
@@ -112,8 +141,6 @@
         <a href="#" class="doc-link">View IaC Blueprint →</a>
       </div>
     </div>
-
-    
 
     <h2>Standardized Technology Stack</h2>
     <div class="method-box">
@@ -143,8 +170,8 @@
     </div>
   </div>
 
-  <footer style="padding: 40px; text-align: center; border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase;">
-    &copy; 2026 THE DATA LINQ | DOCUMENTATION REPOSITORY | LAUREL, MARYLAND
+  <footer>
+    &copy; 2026 SIMPLY CLOUD LLC dba THE DATA LINQ. ALL RIGHTS RESERVED. | LAUREL, MARYLAND
   </footer>
 </div>
 
