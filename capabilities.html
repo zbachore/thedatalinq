@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detailed Capabilities | The Data Linq</title>
+  <style>
+    /* STYLING REMAINS IDENTICAL TO YOUR BASE VERSION FOR CONSISTENCY */
+    :root {
+      --frame-bg: #05070a;
+      --inner-canvas: #0d1117;
+      --surface: #161b22;
+      --accent: #58a6ff;
+      --text-main: #f0f6fc;
+      --text-muted: #8b949e;
+      --border: #30363d;
+      --max-width: 1100px;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 60px 0; font-family: 'Inter', sans-serif; background-color: var(--frame-bg); color: var(--text-main); display: flex; justify-content: center; }
+    .page-wrapper { width: 92%; max-width: var(--max-width); background-color: var(--inner-canvas); border: 1px solid var(--border); border-radius: 8px; box-shadow: 0 40px 100px rgba(0,0,0,0.8); overflow: hidden; }
+    .container { padding: 0 60px; }
+    nav { background: rgba(13, 17, 23, 0.98); border-bottom: 1px solid var(--border); padding: 1.5rem 60px; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-weight: 900; font-size: 1.5rem; letter-spacing: -1px; text-decoration: none; color: #fff; }
+    .section-title { font-size: 2rem; font-weight: 800; margin: 60px 0 30px; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
+    
+    /* NEW: Methodology Grid */
+    .method-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 60px; }
+    .method-step { background: var(--surface); padding: 25px; border-radius: 4px; border: 1px solid var(--border); text-align: center; }
+    .step-num { color: var(--accent); font-weight: 800; font-size: 1.5rem; display: block; margin-bottom: 10px; }
+    
+    /* Full Certification List */
+    .cert-list { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 60px; }
+    .cert-item { padding: 10px 20px; background: rgba(88, 166, 255, 0.05); border-left: 3px solid var(--accent); font-size: 0.9rem; }
+    
+    .btn-back { color: var(--accent); text-decoration: none; font-weight: bold; margin-bottom: 20px; display: inline-block; }
+    footer { padding: 40px 60px; background: #090c10; color: var(--text-muted); font-size: 0.85rem; text-align: center; border-top: 1px solid var(--border); }
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+  <nav>
+    <a href="index.html" class="logo">THE DATA LINQ</a>
+    <div style="display: flex; gap: 30px; font-size: 0.85rem; font-weight: 600;">
+      <a href="index.html" style="color: var(--text-muted); text-decoration: none;">HOME</a>
+      <a href="mailto:contact@thedatalinq.com" style="color: var(--accent); text-decoration: none;">CONSULTATION</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div style="padding-top: 60px;">
+      <a href="index.html" class="btn-back">← Back to Overview</a>
+      <h1>Detailed Technical Capabilities</h1>
+      <p style="color: var(--text-muted); font-size: 1.2rem; max-width: 800px;">
+        A deep dive into the frameworks and proprietary methodologies used by The Data Linq to deliver enterprise excellence.
+      </p>
+    </div>
+
+    <h2 class="section-title">The Strategic Methodology</h2>
+    <div class="method-grid">
+      <div class="method-step"><span class="step-num">01</span><strong>Audit</strong><br><small>WAF-aligned discovery</small></div>
+      <div class="method-step"><span class="step-num">02</span><strong>Blueprint</strong><br><small>Landing Zone design</small></div>
+      <div class="method-step"><span class="step-num">03</span><strong>Engine</strong><br><small>Medallion pipelines</small></div>
+      <div class="method-step"><span class="step-num">04</span><strong>Govern</strong><br><small>Unity Catalog setup</small></div>
+      <div class="method-step"><span class="step-num">05</span><strong>Scale</strong><br><small>CI/CD Automation</small></div>
+    </div>
+
+    <h2 class="section-title">Verified Industry Credentials</h2>
+    <p style="color: var(--text-muted); margin-bottom: 25px;">Our firm maintains the highest level of certification across all major cloud providers.</p>
+    <div class="cert-list">
+      <div class="cert-item">Microsoft Certified: Azure Solutions Architect Expert</div>
+      <div class="cert-item">Databricks Certified: Data Engineer Professional</div>
+      <div class="cert-item">Google Certified: Professional Cloud Architect</div>
+      <div class="cert-item">AWS Certified: Solutions Architect Professional</div>
+      <div class="cert-item">Microsoft Certified: Azure Security Engineer Associate</div>
+      <div class="cert-item">Databricks Certified: Apache Spark Developer</div>
+      <div class="cert-item">AWS Certified: Developer Associate</div>
+      <div class="cert-item">Stanford University: Machine Learning Certified</div>
+    </div>
+
+    <h2 class="section-title">Advanced Stack Specialization</h2>
+    <div style="margin-bottom: 80px; line-height: 2; color: var(--text-muted);">
+      <p><strong>Languages:</strong> Python, PySpark, SQL, T-SQL, PL/SQL, Spark SQL</p>
+      <p><strong>DevOps & IaC:</strong> Terraform, ARM Templates, Azure DevOps, CI/CD Pipelines</p>
+      <p><strong>Data Management:</strong> Delta Lake, Snowflake, Microsoft Fabric, Azure Synapse, Unity Catalog</p>
+      <p><strong>High Availability:</strong> SQL Server Always On, Disaster Recovery (DR) Strategy</p>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2026 THE DATA LINQ | LAUREL, MARYLAND | ALL RIGHTS RESERVED.
+  </footer>
+</div>
+
+</body>
+</html>
