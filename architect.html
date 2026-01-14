@@ -16,27 +16,60 @@
       --max-width: 1100px;
     }
     body { margin: 0; padding: 60px 0; font-family: 'Inter', sans-serif; background-color: var(--frame-bg); color: var(--text-main); display: flex; justify-content: center; }
-    .page-wrapper { width: 92%; max-width: var(--max-width); background-color: var(--inner-canvas); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; box-shadow: 0 40px 100px rgba(0,0,0,0.8); }
-    .container { padding: 60px; }
-    nav { background: rgba(13, 17, 23, 0.98); border-bottom: 1px solid var(--border); padding: 1.5rem 60px; display: flex; justify-content: space-between; align-items: center;}
-    .logo { font-weight: 900; text-decoration: none; color: #fff; letter-spacing: -1px; }
     
-    .method-box { background: var(--surface); border: 1px solid var(--border); padding: 30px; border-radius: 4px; margin-bottom: 30px; }
+    .page-wrapper { width: 92%; max-width: var(--max-width); background-color: var(--inner-canvas); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; box-shadow: 0 40px 100px rgba(0,0,0,0.8); }
+    
+    .container { padding: 60px; }
+    
+    nav { background: rgba(13, 17, 23, 0.98); border-bottom: 1px solid var(--border); padding: 1.5rem 60px; display: flex; justify-content: space-between; align-items: center;}
+    
+    .logo { font-weight: 900; text-decoration: none; color: #fff; letter-spacing: -1px; }
+
+    /* --- ANIMATED CARDS (THE FRAMES) --- */
+    .method-box { 
+        background: var(--surface); 
+        border: 1px solid var(--border); 
+        padding: 30px; 
+        border-radius: 4px; 
+        margin-bottom: 30px;
+        /* Interactive Transition Settings */
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+    }
+
+    /* Hover Animation Trigger */
+    .method-box:hover {
+        transform: translateY(-8px); /* Lifts the frame */
+        border-color: var(--accent); /* Changes border color */
+        box-shadow: 0 20px 40px rgba(88, 166, 255, 0.1); /* Subtle blue glow */
+        cursor: pointer;
+    }
+
     .tag { display: inline-block; background: rgba(88, 166, 255, 0.1); color: var(--accent); padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: 800; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
     
     h1 { font-size: 3rem; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 20px; }
     h2 { font-size: 1.5rem; font-weight: 700; border-bottom: 1px solid var(--border); padding-bottom: 15px; margin-top: 60px; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); }
-    h3 { margin-top: 0; font-size: 1.2rem; }
+    h3 { margin-top: 0; font-size: 1.2rem; transition: color 0.3s ease; }
     
+    /* Change header color on hover */
+    .method-box:hover h3 {
+        color: var(--accent);
+    }
+
     .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+    
     code { color: var(--accent); font-family: 'Roboto Mono', monospace; background: rgba(88, 166, 255, 0.05); padding: 2px 5px; border-radius: 3px; }
     
     .stack-list { column-count: 2; list-style: none; padding: 0; margin: 0; }
     .stack-list li { margin-bottom: 15px; color: var(--text-muted); font-size: 0.95rem; }
     .stack-list strong { color: var(--text-main); display: block; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; }
 
-    .doc-link { color: var(--accent); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; margin-top: 15px; font-size: 0.9rem; }
-    .doc-link:hover { text-decoration: underline; }
+    .doc-link { color: var(--accent); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; margin-top: 15px; font-size: 0.9rem; transition: gap 0.2s ease; }
+    
+    /* Arrow movement on hover */
+    .method-box:hover .doc-link {
+        gap: 12px;
+    }
   </style>
 </head>
 <body>
@@ -55,6 +88,8 @@
       Our objective is to codify the patterns required to build resilient, sovereign, and configuration-driven 
       cloud platforms for the global engineering community.
     </p>
+
+    
 
     <h2>Engineering Principles</h2>
     <div class="grid">
@@ -77,6 +112,8 @@
         <a href="#" class="doc-link">View IaC Blueprint →</a>
       </div>
     </div>
+
+    
 
     <h2>Standardized Technology Stack</h2>
     <div class="method-box">
