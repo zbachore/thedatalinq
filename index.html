@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Data Linq | Enterprise Cloud & Data Architecture</title>
+  <title>The Data Linq | Enterprise Architectural Repository</title>
   <style>
     :root {
       --frame-bg: #05070a;
@@ -82,45 +82,35 @@
     }
     .view-all-link:hover { color: var(--accent); }
 
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 24px;
-      margin: 40px 0;
+    /* Pattern Grid Styling */
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 60px; }
+    .method-box { 
+        background: var(--surface); 
+        border: 1px solid var(--border); 
+        padding: 30px; 
+        border-radius: 4px;
+        transition: all 0.3s ease;
+    }
+    .method-box:hover {
+        border-color: var(--accent);
+        transform: translateY(-5px);
+    }
+    .tag { 
+        background: rgba(88, 166, 255, 0.1); 
+        color: var(--accent); 
+        padding: 4px 10px; 
+        border-radius: 4px; 
+        font-size: 0.7rem; 
+        font-weight: 800; 
+        text-transform: uppercase;
     }
 
-    /* RESTORED: Interactive Hover Movement */
-    .service-card {
-      background: var(--surface);
-      padding: 40px;
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .service-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-    }
-
-    .service-card h3 { color: var(--accent); margin-top: 0; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1.5px; }
-    .service-card ul { padding: 0; list-style: none; color: var(--text-muted); font-size: 0.95rem; margin-top: 20px; }
-    .service-card li { margin-bottom: 12px; padding-left: 20px; position: relative; }
-    .service-card li::before { content: "→"; position: absolute; left: 0; color: var(--accent); }
-
-    /* RESTORED: Link Styling */
-    .service-link {
-      color: inherit;
-      text-decoration: none;
-      transition: 0.2s;
-    }
-    .service-link:hover {
-      color: var(--accent);
-      text-decoration: underline;
-    }
-
-    .section-title { font-size: 2rem; font-weight: 800; margin-bottom: 40px; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
+    .section-title { font-size: 2rem; font-weight: 800; margin-bottom: 40px; border-bottom: 1px solid var(--border); padding-bottom: 15px; color: var(--text-main); }
     
+    .doc-link { color: var(--accent); text-decoration: none; font-weight: 600; font-size: 0.85rem; display: inline-block; margin-top: 15px; }
+    .doc-link:hover { text-decoration: underline; }
+
+    /* Industry Impact */
     .case-study-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 80px; }
     .case-item h4 { color: var(--text-main); font-size: 1.2rem; margin: 0 0 10px 0; }
     .case-item p { color: var(--text-muted); font-size: 1rem; margin: 0; line-height: 1.6; }
@@ -148,8 +138,7 @@
       background: #090c10;
       color: var(--text-muted);
       font-size: 0.85rem;
-      display: flex;
-      justify-content: space-between;
+      display: flex;      justify-content: space-between;
       align-items: center;
     }
   </style>
@@ -161,7 +150,7 @@
   <a href="index.html" class="logo">THE DATA LINQ</a>
   <div style="display: flex; gap: 30px; font-size: 0.85rem; font-weight: 600; letter-spacing: 1px;">
     <a href="architect.html" style="color: var(--accent); text-decoration: none; text-transform: uppercase;">Technical Repository</a>
-    <a href="#impact" style="color: var(--text-muted); text-decoration: none; text-transform: uppercase;">Industry Impact</a>
+    <a href="#patterns" style="color: var(--text-muted); text-decoration: none; text-transform: uppercase;">Reference Patterns</a>
     <a href="mailto:contact@thedatalinq.com" style="color: var(--text-muted); text-decoration: none; text-transform: uppercase;">Connect</a>
   </div>
 </nav>
@@ -170,10 +159,9 @@
 <header class="hero">
   <h1>The Data Linq: Enterprise Data Standards.</h1>
   <p class="hero-sub">
-    The Data Linq is an <strong>independent architectural repository</strong> designed to codify and distribute 
-    high-performance cloud data patterns. Our mission is to provide the global engineering community with 
-    vetted, <strong>configuration-driven frameworks</strong> that ensure infrastructure resilience and 
-    governance at scale.
+    An independent <strong>architectural repository</strong> designed to codify and distribute 
+    high-performance cloud data patterns. This environment provides the global engineering community with 
+    vetted, <strong>configuration-driven frameworks</strong> for infrastructure resilience.
   </p>
 </header>
 
@@ -185,60 +173,61 @@
     </div>
     <a href="capabilities.html" class="view-all-link">View All 12+ Industry Credentials →</a>
 
-    <section id="services">
-      <h2 class="section-title">Reference Patterns</h2>
-      <div class="services-grid">
+    <section id="patterns" style="padding: 40px 0;">
+      <h2 class="section-title">Standardized Reference Patterns</h2>
+      <div class="grid">
         
-        <div class="service-card">
-          <h3>Cloud Foundations</h3>
-          <ul>
-            <li><a href="architect.html#landing-zones" class="service-link">Enterprise Azure Landing Zone Implementation</a></li>
-            <li><a href="architect.html#waf" class="service-link">Well-Architected Framework (WAF) Compliance</a></li>
-            <li><a href="architect.html#terraform" class="service-link">Immutable Infrastructure via Terraform & IaC</a></li>
-          </ul>
+        <div class="method-box">
+          <span class="tag">SEC-01</span>
+          <h3 style="margin-top: 15px;">Secured Hub-Spoke VNet</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">Automated Terraform patterns for enterprise-grade networking perimeters, ensuring isolated compute and private-link integration.</p>
+          <a href="architect.html" class="doc-link">View Documentation →</a>
         </div>
 
-        <div class="service-card">
-          <h3>Lakehouse Engineering</h3>
-          <ul>
-            <li><a href="architect.html#medallion" class="service-link">Medallion Architecture Design (Bronze, Silver, Gold)</a></li>
-            <li><a href="architect.html#unity" class="service-link">Unity Catalog Governance & Data Lineage</a></li>
-            <li><a href="architect.html#spark" class="service-link">High-Velocity Spark Structured Streaming</a></li>
-          </ul>
+        <div class="method-box">
+          <span class="tag">DAT-02</span>
+          <h3 style="margin-top: 15px;">Medallion Lakehouse Logic</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">Vetted PySpark configurations for Bronze-to-Gold state transitions with built-in audit logging and idempotency checks.</p>
+          <a href="architect.html" class="doc-link">View Documentation →</a>
         </div>
 
-        <div class="service-card">
-          <h3>Governance & Security</h3>
-          <ul>
-            <li><a href="architect.html#vnet" class="service-link">VNet Injection & Private Link Security Patterns</a></li>
-            <li><a href="architect.html#fgac" class="service-link">Fine-Grained Access Control (FGAC) Frameworks</a></li>
-            <li><a href="architect.html#fabric" class="service-link">Unified Analytics via Microsoft Fabric & Synapse</a></li>
-          </ul>
+        <div class="method-box">
+            <span class="tag">IAC-03</span>
+            <h3 style="margin-top: 15px;">Immutable CI/CD Pipelines</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">Standardized GitHub Actions and Azure DevOps YAML patterns for zero-touch cloud infrastructure deployments.</p>
+            <a href="architect.html" class="doc-link">View Documentation →</a>
         </div>
-        
+
+        <div class="method-box">
+            <span class="tag">GOV-04</span>
+            <h3 style="margin-top: 15px;">Unity Catalog Governance</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">Frameworks for fine-grained access control (FGAC) and automated data lineage across multi-workspace environments.</p>
+            <a href="architect.html" class="doc-link">View Documentation →</a>
+        </div>
+
       </div>
     </section>
 
     <section id="impact">
-  <h2 class="section-title">Field-Validated Patterns</h2>
-  <div class="case-study-grid">
-    <div class="case-item">
-      <h4>Global Migration Frameworks</h4>
-      <p>Architectural blueprints for transitioning legacy environments to Azure Databricks, utilizing Medallion patterns to maintain high-integrity data states.</p>
-    </div>
-    <div class="case-item">
-      <h4>Operational Expenditure Logic</h4>
-      <p>Logic-driven workload optimization patterns designed to reduce cloud compute costs while maintaining performance SLAs.</p>
-    </div>
-  </div>
-</section>
+      <h2 class="section-title">Field-Validated Provenance</h2>
+      <div class="case-study-grid">
+        <div class="case-item">
+          <h4>Global Migration Frameworks</h4>
+          <p>Blueprints for transitioning legacy environments to Azure Databricks, utilizing Medallion patterns to maintain high-integrity data states at scale.</p>
+        </div>
+        <div class="case-item">
+          <h4>Operational Expenditure Logic</h4>
+          <p>Logic-driven workload optimization patterns designed to reduce cloud compute costs while maintaining performance SLAs in high-demand institutions.</p>
+        </div>
+      </div>
+    </section>
   </div>
 
 <section id="contact" class="cta-section">
   <div class="container">
-    <h2 style="font-size: 2.5rem; margin-top: 0;">Collaborate on Architecture</h2>
-    <p style="color: var(--text-muted); margin-bottom: 30px;">Open for technical discussions, architectural reviews, and community contributions.</p>
-    <a href="mailto:contact@thedatalinq.com" class="btn">Connect via Technical Consultation</a>
+    <h2 style="font-size: 2.5rem; margin-top: 0;">Architectural Consultation</h2>
+    <p style="color: var(--text-muted); margin-bottom: 30px;">Open for technical discussions, peer reviews, and implementation inquiries regarding the standards hosted in this repository.</p>
+    <a href="mailto:contact@thedatalinq.com" class="btn">Request Technical Discussion</a>
   </div>
 </section>
 
@@ -247,32 +236,29 @@
     <div style="opacity: 0.6; letter-spacing: 1px;">LAUREL, MARYLAND</div>
   </footer>
 
-
   <div id="chat-widget-container" style="position: fixed; bottom: 30px; right: 30px; z-index: 9999; font-family: 'Inter', sans-serif; display: flex; flex-direction: column; align-items: flex-end;">
     
     <div id="chat-window" style="display: none; width: 400px; height: 600px; background: #0d1117; border: 1px solid #30363d; border-radius: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); overflow: hidden; margin-bottom: 20px;">
         <div style="background: #161b22; padding: 15px; border-bottom: 1px solid #30363d; display: flex; justify-content: space-between; align-items: center;">
-            <span style="font-weight: 800; font-size: 0.8rem; color: #58a6ff; letter-spacing: 1px;">DATALINQ AI REPOSITORY</span>
+            <span style="font-weight: 800; font-size: 0.8rem; color: #58a6ff; letter-spacing: 1px;">DATALINQ ARCHITECTURAL OVERSEER</span>
             <button onclick="toggleChat()" style="background: none; border: none; color: #8b949e; cursor: pointer; font-size: 1.5rem; line-height: 1;">&times;</button>
         </div>
         <iframe src="https://datalinq.streamlit.app/?embed=true" style="width: 100%; height: calc(100% - 50px); border: none;"></iframe>
     </div>
 
     <div id="chat-button-wrapper" style="display: flex; align-items: center; gap: 15px; cursor: pointer;" onclick="toggleChat()">
-        
         <span id="chat-label" style="background: #161b22; color: #f0f6fc; padding: 10px 20px; border-radius: 8px; border: 1px solid #30363d; font-size: 0.75rem; font-weight: 700; box-shadow: 0 4px 15px rgba(0,0,0,0.3); letter-spacing: 1px; white-space: nowrap; transition: 0.3s;">
-            EXPLORE ARCHITECTURE AI
+            CONSULT THE OVERSEER
         </span>
-
         <div id="chat-icon-circle" style="width: 60px; height: 60px; border-radius: 50%; background: #58a6ff; display: flex; justify-content: center; align-items: center; box-shadow: 0 10px 25px rgba(88, 166, 255, 0.3); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
             <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
             </svg>
         </div>
     </div>
-</div>
+  </div>
 
-<script>
+  <script>
     function toggleChat() {
         const chatWin = document.getElementById('chat-window');
         const chatLabel = document.getElementById('chat-label');
@@ -280,20 +266,19 @@
         
         if (chatWin.style.display === 'none' || chatWin.style.display === '') {
             chatWin.style.display = 'block';
-            chatLabel.style.opacity = '0'; // Smooth fade out
+            chatLabel.style.opacity = '0'; 
             chatIcon.style.transform = 'rotate(90deg) scale(0.9)';
             chatIcon.style.background = '#161b22';
             chatIcon.style.border = '1px solid #30363d';
         } else {
             chatWin.style.display = 'none';
-            chatLabel.style.opacity = '1'; // Smooth fade in
+            chatLabel.style.opacity = '1'; 
             chatIcon.style.transform = 'rotate(0deg) scale(1)';
             chatIcon.style.background = '#58a6ff';
             chatIcon.style.border = 'none';
         }
     }
 
-    // Hover effect for the circle
     const wrapper = document.getElementById('chat-button-wrapper');
     wrapper.onmouseenter = () => document.getElementById('chat-icon-circle').style.transform = 'scale(1.1)';
     wrapper.onmouseleave = () => {
@@ -301,10 +286,7 @@
             document.getElementById('chat-icon-circle').style.transform = 'scale(1)';
         }
     };
-</script>
-
-  
+  </script>
 </div>
-
 </body>
 </html>
