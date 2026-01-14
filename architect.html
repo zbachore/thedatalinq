@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Architect & Methodology | The Data Linq</title>
+  <style>
+    :root {
+      --frame-bg: #05070a;
+      --inner-canvas: #0d1117;
+      --surface: #161b22;
+      --accent: #58a6ff;
+      --text-main: #f0f6fc;
+      --text-muted: #8b949e;
+      --border: #30363d;
+      --max-width: 1100px;
+    }
+    body { margin: 0; padding: 60px 0; font-family: 'Inter', sans-serif; background-color: var(--frame-bg); color: var(--text-main); display: flex; justify-content: center; }
+    .page-wrapper { width: 92%; max-width: var(--max-width); background-color: var(--inner-canvas); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+    .container { padding: 60px; }
+    nav { background: rgba(13, 17, 23, 0.98); border-bottom: 1px solid var(--border); padding: 1.5rem 60px; display: flex; justify-content: space-between; }
+    .logo { font-weight: 900; text-decoration: none; color: #fff; }
+    
+    .method-box { background: var(--surface); border: 1px solid var(--border); padding: 30px; border-radius: 4px; margin-bottom: 30px; }
+    .tag { display: inline-block; background: rgba(88, 166, 255, 0.1); color: var(--accent); padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; margin-right: 10px; }
+    
+    h2 { border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-top: 50px; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+    code { color: var(--accent); font-family: monospace; }
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+  <nav>
+    <a href="index.html" class="logo">THE DATA LINQ</a>
+    <a href="index.html" style="color: var(--text-muted); text-decoration: none; font-weight: 600;">← BACK TO HOME</a>
+  </nav>
+
+  <div class="container">
+    <span class="tag">PRINCIPAL ARCHITECT</span>
+    <h1>Solutions Repository & Methodology</h1>
+    <p style="color: var(--text-muted); font-size: 1.2rem; line-height: 1.6;">
+      Founded by a Senior Cloud Architect with a decade of experience across <strong>Cognizant</strong> and <strong>Johns Hopkins</strong>, 
+      The Data Linq is dedicated to documenting and deploying resilient, configuration-driven data platforms.
+    </p>
+
+    <h2>Architectural Principles</h2>
+    <div class="grid">
+      <div class="method-box">
+        <span class="tag">01</span>
+        <h3>Configuration-Driven ETL</h3>
+        <p style="font-size: 0.9rem; color: var(--text-muted);">Reducing technical debt by utilizing <code>JSON/YAML</code> metadata to drive PySpark and Delta Live Tables pipelines, ensuring 100% idempotency.</p>
+      </div>
+      <div class="method-box">
+        <span class="tag">02</span>
+        <h3>Immutable Infrastructure</h3>
+        <p style="font-size: 0.9rem; color: var(--text-muted);">Utilizing <code>Terraform</code> and <code>Azure DevOps CI/CD</code> to ensure that all Landing Zones and Lakehouses are reproducible and version-controlled.</p>
+      </div>
+    </div>
+
+    <h2>Technical Reference Stack</h2>
+    <p>Our repository focuses on the following primary stacks for enterprise impact:</p>
+    <div class="method-box">
+      <ul style="column-count: 2; line-height: 2; color: var(--text-muted);">
+        <li><strong>Compute:</strong> Azure Databricks, Apache Spark</li>
+        <li><strong>Orchestration:</strong> ADF, Airflow</li>
+        <li><strong>Governance:</strong> Unity Catalog, Microsoft Purview</li>
+        <li><strong>Storage:</strong> Delta Lake, ADLS Gen2</li>
+        <li><strong>DevOps:</strong> Terraform, GitHub Actions</li>
+        <li><strong>Analytics:</strong> Microsoft Fabric, Power BI</li>
+      </ul>
+    </div>
+
+    <h2>The "Impact" Goal</h2>
+    <p style="color: var(--text-muted);">
+      We are committed to sharing <strong>Well-Architected</strong> patterns that help the global community build faster and more securely. 
+      Our focus is on the <strong>Medallion Architecture</strong> and <strong>SLED20</strong> administrative schemas.
+    </p>
+  </div>
+
+  <footer style="padding: 40px; text-align: center; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--text-muted);">
+    &copy; 2026 THE DATA LINQ | ARCHITECTURAL SOLUTIONS REPOSITORY
+  </footer>
+</div>
+
+</body>
+</html>
