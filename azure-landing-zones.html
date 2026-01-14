@@ -34,6 +34,7 @@
       border: 1px solid var(--border);
       border-radius: 8px;
       padding: 60px;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.8);
     }
 
     .back-link {
@@ -43,23 +44,54 @@
       font-size: 0.9rem;
       display: inline-block;
       margin-bottom: 30px;
+      transition: transform 0.2s ease;
+    }
+    .back-link:hover {
+        transform: translateX(-5px);
     }
 
     h1 { font-size: 2.5rem; letter-spacing: -1px; margin-bottom: 10px; }
-    h2 { color: var(--accent); margin-top: 40px; font-size: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+    h2 { color: var(--accent); margin-top: 40px; font-size: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
     
+    /* --- ANIMATED IMPORTANCE BOX --- */
     .importance-box {
       background: var(--surface);
       border-left: 4px solid var(--accent);
-      padding: 20px;
+      padding: 25px;
       margin: 30px 0;
+      border-radius: 0 4px 4px 0;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    ul { padding-left: 20px; }
-    li { margin-bottom: 15px; }
+    .importance-box:hover {
+        transform: scale(1.02);
+        background: #1c2128;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    /* --- ANIMATED CONTENT SECTIONS --- */
+    .content-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        padding: 30px;
+        border-radius: 4px;
+        margin-top: 20px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .content-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--accent);
+        box-shadow: 0 15px 35px rgba(88, 166, 255, 0.1);
+    }
+
+    ul { padding-left: 20px; list-style: none; }
+    li { margin-bottom: 15px; position: relative; }
+    li::before { content: "→"; position: absolute; left: -25px; color: var(--accent); font-weight: bold; }
+    
     strong { color: var(--text-main); }
 
-    footer { margin-top: 60px; border-top: 1px solid var(--border); padding-top: 20px; font-size: 0.8rem; color: var(--text-muted); }
+    footer { margin-top: 60px; border-top: 1px solid var(--border); padding-top: 20px; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
   </style>
 </head>
 <body>
@@ -72,29 +104,37 @@
     <p style="color: var(--text-muted); font-size: 1.2rem;">The foundation of scalable, secure, and compliant cloud operations.</p>
   </header>
 
+  
+
   <section class="importance-box">
     <strong>Why it matters:</strong> Without a landing zone, organizations often face "Cloud Sprawl"—a chaotic environment where security gaps, unmanaged costs, and inconsistent networking make enterprise-grade data engineering impossible.
   </section>
 
   <section>
     <h2>Core Importance</h2>
-    <ul>
-      <li><strong>Governance at Scale:</strong> Automatically apply policies (like data residency or encryption requirements) across all subscriptions using Management Groups.</li>
-      <li><strong>Network Topology:</strong> Establishes a "Hub-and-Spoke" model that centralizes security (Firewalls/VPNs) while allowing individual teams to operate in isolated "Spokes."</li>
-      <li><strong>Identity Management:</strong> Ensures Role-Based Access Control (RBAC) is consistent, preventing unauthorized access to sensitive data lakes.</li>
-    </ul>
+    <div class="content-card">
+        <ul>
+          <li><strong>Governance at Scale:</strong> Automatically apply policies (like data residency or encryption requirements) across all subscriptions using Management Groups.</li>
+          <li><strong>Network Topology:</strong> Establishes a "Hub-and-Spoke" model that centralizes security (Firewalls/VPNs) while allowing individual teams to operate in isolated "Spokes."</li>
+          <li><strong>Identity Management:</strong> Ensures Role-Based Access Control (RBAC) is consistent, preventing unauthorized access to sensitive data lakes.</li>
+        </ul>
+    </div>
+
+    
 
     <h2>Best Practices</h2>
-    <ul>
-      <li><strong>Adopt Infrastructure as Code (IaC):</strong> Never deploy a landing zone manually. Use Terraform or Bicep to ensure the environment is version-controlled and repeatable.</li>
-      <li><strong>Separate Duties:</strong> Distinguish between Platform landing zones (connectivity, identity) and Application landing zones (where your data workloads live).</li>
-      <li><strong>Immutable Policy:</strong> Use Azure Policy to "Deny" any resource creation that doesn't meet security standards, rather than fixing them after the fact.</li>
-      <li><strong>Plan for Connectivity:</strong> Ensure IP address spaces do not overlap with on-premises networks to allow for future ExpressRoute or VPN integrations.</li>
-    </ul>
+    <div class="content-card">
+        <ul>
+          <li><strong>Adopt Infrastructure as Code (IaC):</strong> Never deploy a landing zone manually. Use Terraform or Bicep to ensure the environment is version-controlled and repeatable.</li>
+          <li><strong>Separate Duties:</strong> Distinguish between Platform landing zones (connectivity, identity) and Application landing zones (where your data workloads live).</li>
+          <li><strong>Immutable Policy:</strong> Use Azure Policy to "Deny" any resource creation that doesn't meet security standards, rather than fixing them after the fact.</li>
+          <li><strong>Plan for Connectivity:</strong> Ensure IP address spaces do not overlap with on-premises networks to allow for future ExpressRoute or VPN integrations.</li>
+        </ul>
+    </div>
   </section>
 
   <footer>
-    &copy; 2026 THE DATA LINQ | Enterprise Architecture Documentation
+    &copy; 2026 THE DATA LINQ | Enterprise Architecture Documentation | Laurel, Maryland
   </footer>
 </div>
 
